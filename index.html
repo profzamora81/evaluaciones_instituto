@@ -97,7 +97,7 @@
             font-size: 14px; 
             text-align: center; 
             margin-bottom: 20px; 
-            display: none; /* Oculto por defecto */
+            display: none; 
         }
     </style>
 </head>
@@ -112,24 +112,25 @@
 
     <form id="evaluationForm">
         
+        <!-- Selección de Carrera / Orientación -->
         <div class="form-group">
-            <label for="grado">Grado:</label>
-            <select id="grado" required>
-                <option value="">Selecciona tu grado...</option>
-                <!-- CORRECCIÓN: El value debe ser el nombre COMPLETO de la carpeta -->
-                <option value="Bachillerato_en_ciencias_con_orientacion">Bachillerato en Ciencias</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="orientacion">Orientación:</label>
+            <label for="orientacion">Carrera / Especialidad:</label>
             <select id="orientacion" required>
-                <option value="">Selecciona tu orientación...</option>
-                <!-- Los values coinciden exactamente con tus subcarpetas -->
+                <option value="">Selecciona tu carrera...</option>
                 <option value="Computacion">Computación</option>
                 <option value="Diseno">Diseño</option>
                 <option value="Electricidad">Electricidad</option>
                 <option value="Mecanica">Mecánica</option>
+            </select>
+        </div>
+
+        <!-- Selección de Grado (coincidente con tus carpetas 4to y 5to) -->
+        <div class="form-group">
+            <label for="grado">Grado:</label>
+            <select id="grado" required>
+                <option value="">Selecciona tu grado...</option>
+                <option value="4to">4to Año</option>
+                <option value="5to">5to Año</option>
             </select>
         </div>
 
@@ -144,31 +145,23 @@
 
 <script>
     document.getElementById('evaluationForm').addEventListener('submit', function(event) {
-        // Prevenir que el formulario recargue la página
         event.preventDefault(); 
 
-        // 1. Obtener los valores ingresados por el estudiante
-        const grado = document.getElementById('grado').value;
         const orientacion = document.getElementById('orientacion').value;
+        const grado = document.getElementById('grado').value;
         const codigoIngresado = document.getElementById('codigo').value;
         const mensajeError = document.getElementById('mensajeError');
 
-        // 2. Definir el código maestro para el examen (Puedes cambiarlo aquí)
-        const CODIGO_CORRECTO = "parcial3"; 
+        const CODIGO_CORRECTO = "Eva2026"; 
 
-        // 3. Validar el código
         if (codigoIngresado === CODIGO_CORRECTO) {
-            // Ocultar error si estaba visible
             mensajeError.style.display = 'none';
             
-            // 4. Construir la ruta basada en las carpetas seleccionadas
-            // Quedará como: ./Bachillerato_en_ciencias_con_ori/Computacion/index.html
-            const rutaDestino = `./${grado}/${orientacion}/index.html`;
+            // Construye la ruta exacta basada en tu estructura: ./Computacion/4to/index.html
+            const rutaDestino = `./${orientacion}/${grado}/index.html`;
             
-            // 5. Redirigir al estudiante a su examen
             window.location.href = rutaDestino;
         } else {
-            // Mostrar mensaje de error y limpiar el campo de código
             mensajeError.style.display = 'block';
             document.getElementById('codigo').value = '';
             document.getElementById('codigo').focus();
@@ -177,4 +170,4 @@
 </script>
 
 </body>
-</html>
+</html> 
