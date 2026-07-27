@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primer Examen Parcial - Diseño Computarizado I</title>
+  <link rel="icon" type="image/jpeg" href="../../public/Logo.jpeg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    code, pre { font-family: 'Fira Code', monospace; }
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+    }
+    .correct-answer { background-color: #dcfce7 !important; border-color: #22c55e !important; color: #166534 !important; }
+    .incorrect-answer { background-color: #fee2e2 !important; border-color: #ef4444 !important; color: #991b1b !important; }
+    .disabled-element { pointer-events: none; opacity: 0.88; }
+    
+    @media print {
+      @page { margin: 1.5cm; }
+      .no-print { display: none !important; }
+      body { 
+        background-color: white !important; 
+        background-image: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .glass-panel { box-shadow: none; border: 1px solid #e2e8f0; }
+      .main-evaluation-content { display: none !important; }
+      #print-receipt { display: block !important; }
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    }
+    #print-receipt { display: none; }
+  </style>
+</head>
+<body class="text-slate-800 antialiased py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-100 via-indigo-50/40 to-cyan-50 min-h-screen">
+
+  <div class="max-w-4xl mx-auto main-evaluation-content">
+    <!-- Encabezado Institucional -->
+    <header class="glass-panel rounded-3xl p-6 sm:p-8 mb-8 text-center border-t-8 border-indigo-600 relative overflow-hidden">
+      <div class="absolute top-0 right-0 -mt-4 -mr-4 w-28 h-28 bg-gradient-to-br from-indigo-500 to-cyan-600 rounded-full opacity-15 blur-2xl"></div>
+      <div class="absolute bottom-0 left-0 -mb-4 -ml-4 w-28 h-28 bg-gradient-to-tr from-blue-400 to-indigo-600 rounded-full opacity-15 blur-2xl"></div>
+      
+      <div class="relative z-10">
+        <div class="inline-flex items-center justify-center mb-3 p-2 bg-white rounded-2xl shadow-sm border border-slate-200">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 bg-rose-600 rounded-xl flex items-center justify-center text-white font-black text-2xl tracking-wider shadow-inner">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-teal-600 rounded-xl flex items-center justify-center text-white font-black text-2xl tracking-wider shadow-inner">
+                <img src="../../public/Logo.jpeg" alt="Logo Instituto Lázaro Chacón González" class="w-24 h-24 sm:w-28 sm:h-28 object-contain rounded-xl">
+            </div>
+          </div>
+        </div>
+        <h1 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight uppercase">Instituto Industrial Central "General Lázaro Chacón González"</h1>
+        <p class="text-xs sm:text-sm font-semibold text-slate-500 mt-1">Bachillerato en Ciencias y Letras con Orientación en Diseño Gráfico</p>
+        <h2 class="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-800 via-indigo-600 to-cyan-700 mt-2">Primer Examen Parcial de Diseño Computarizado I</h2>
+        <p class="text-xs font-bold text-indigo-600 tracking-widest uppercase mt-1">III Unidad - Ciclo Lectivo 2026</p>
+        
+        <div class="mt-4 flex flex-wrap justify-center gap-2 text-xs sm:text-sm font-medium">
+          <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full border border-slate-200"><strong>Curso:</strong> Diseño Computarizado I</span>
+          <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full border border-slate-200"><strong>Grado:</strong> 4to. Bachillerato en Diseño</span>
+          <span class="bg-indigo-100 text-indigo-900 px-3 py-1 rounded-full border border-indigo-200 font-bold"><strong>Valor Total:</strong> 20 Puntos</span>
+        </div>
+        <p class="text-slate-500 mt-3 text-xs sm:text-sm"><strong>Docente:</strong> Prof. Erick Enrique Zamora Paz</p>
+      </div>
+    </header>
+
+    <!-- Advertencia de Integridad e Instrucciones -->
+    <div class="bg-amber-50 border-l-4 border-amber-500 p-4 mb-8 rounded-r-2xl shadow-sm no-print">
+      <div class="flex items-start">
+        <div class="flex-shrink-0">
+          <svg class="h-6 w-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+          </svg>
+        </div>
+        <div class="ml-3">
+          <h3 class="text-sm font-bold text-amber-800 uppercase tracking-wide">Instrucciones Generales de la Evaluación</h3>
+          <div class="mt-1 text-xs sm:text-sm text-amber-700 font-medium">
+            <p>Esta prueba evalúa las competencias técnicas adquiridas en las Guías de Trabajo 1, 2 y 3. Consta de <strong>4 Series evaluativas (5 Puntos cada una = 20 Pts Totales)</strong>. Lea detenidamente cada ítem antes de responder. Al finalizar, descargue el comprobante oficial en PDF y adjúntelo en Google Classroom.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form id="evaluation-form">
+      <!-- Datos del Estudiante -->
+      <section class="glass-panel rounded-2xl p-6 mb-8 border-l-4 border-indigo-500 hover:shadow-md transition-shadow">
+        <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center">
+          <svg class="w-6 h-6 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+          </svg>
+          Identificación del Estudiante
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Nombre Completo</label>
+            <input type="text" id="student-name" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all text-sm font-medium" placeholder="Apellidos, Nombres">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Clave / Carné</label>
+            <input type="number" id="student-id" required min="1" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all text-sm font-medium" placeholder="Ej. 12">
+          </div>
+        </div>
+      </section>
+
+      <!-- SERIE I: RETÍCULAS, LIENZO TÉCNICO Y PRE-PRENSA VECTORIAL -->
+      <div class="mb-10">
+        <div class="flex items-center mb-6">
+          <div class="h-8 w-2 bg-indigo-600 rounded-full mr-3"></div>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900">SERIE I: Retículas, Lienzo Técnico y Pre-prensa <span class="text-indigo-600 text-lg sm:text-xl">(5 Puntos)</span></h2>
+        </div>
+        
+        <section class="glass-panel rounded-2xl p-6 mb-6 border-t border-indigo-100">
+          <p class="text-xs sm:text-sm font-medium text-indigo-900 mb-6 bg-indigo-50/70 p-3 rounded-xl border border-indigo-100">
+            Instrucciones: Evalúe los parámetros técnicos de configuración de lienzos, sangrados, márgenes y la estructura de capas en software vectorial (Guía 1). Seleccione la opción correcta para cada ítem. <strong>(Valor: 5 ítems a 1 pt c/u).</strong>
+          </p>
+
+          <div class="space-y-6">
+            <!-- Q1 -->
+            <div class="question-block" id="qb-s1_1">
+              <p class="font-semibold text-slate-800 mb-3 text-sm sm:text-base">1. ¿Cuál es el propósito técnico obligatorio de configurar un área exterior de sangrado (Bleed) de 3 mm en un documento vectorial para imprenta?</p>
+              <div class="grid grid-cols-1 gap-2 pl-2 sm:pl-4">
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_1" value="a" class="mt-0.5 w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                  <span class="font-medium text-slate-700">a) Aumentar la resolución de exportación de la imagen a 600 DPI.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_1" value="b" required class="mt-0.5 w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                  <span class="font-medium text-slate-700">b) Prever e impedir bordes blancos indeseados en el diseño producidos por imprecisiones mecánicas durante el corte de guillotina.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_1" value="c" class="mt-0.5 w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                  <span class="font-medium text-slate-700">c) Bloquear el archivo para que no pueda ser editado por otro diseñador.</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question-block" id="qb-s1_2">
+              <p class="font-semibold text-slate-800 mb-3 text-sm sm:text-base">2. En el diseño editorial vectorial de la Guía 1, ¿cuál es el valor constante matemático empleado para definir la Proporción Áurea ($\Phi$) en el área de la retícula?</p>
+              <div class="grid grid-cols-1 gap-2 pl-2 sm:pl-4">
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_2" value="a" required class="mt-0.5 w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                  <span class="font-medium text-slate-700">a) $\Phi = \frac{1 + \sqrt{5}}{2} \approx 1.618$</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_2" value="b" class="mt-0.5 w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                  <span class="font-medium text-slate-700">b) $\Phi = 3.1416$</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_2" value="c" class="mt-0.5 w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                  <span class="font-medium text-slate-700">c) $\Phi = 2.7182$</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question-block" id="qb-s1_3">
+              <p class="font-semibold text-slate-800 mb-3 text-sm sm:text-base">3. ¿Qué convención visual estandarizada en la maquetación representa la ubicación de una imagen fotográfica que aún no ha sido insertada en el layout?</p>
+              <div class="grid grid-cols-1 gap-2 pl-2 sm:pl-4">
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_3" value="a" required class="mt-0.5 w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                  <span class="font-medium text-slate-700">a) Un contenedor rectangular o cuadrado vacío cruzado por una diagonal interna (placeholder).</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_3" value="b" class="mt-0.5 w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                  <span class="font-medium text-slate-700">b) Un bloque pintado de negro sólido.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_3" value="c" class="mt-0.5 w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                  <span class="font-medium text-slate-700">c) Un texto en negrita indicando "INSERTAR FOTO AQUÍ".</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question-block" id="qb-s1_4">
+              <p class="font-semibold text-slate-800 mb-3 text-sm sm:text-base">4. De acuerdo a la Guía 1, ¿cuál es el orden jerárquico correcto de apilamiento en el panel de capas de abajo hacia arriba?</p>
+              <div class="grid grid-cols-1 gap-2 pl-2 sm:pl-4">
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_4" value="a" required class="mt-0.5 w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                  <span class="font-medium text-slate-700">a) Capa 1 (Inferior): Reticula_Soporte | Capa 2 (Media): Graficos_Imagenes | Capa 3 (Superior): Textos_Contenido.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_4" value="b" class="mt-0.5 w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                  <span class="font-medium text-slate-700">b) Capa 1 (Inferior): Textos_Contenido | Capa 2 (Media): Reticula_Soporte | Capa 3 (Superior): Graficos_Imagenes.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_4" value="c" class="mt-0.5 w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                  <span class="font-medium text-slate-700">c) Todas las imágenes y textos deben unificarse obligatoriamente en una sola capa para imprimir.</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question-block" id="qb-s1_5">
+              <p class="font-semibold text-slate-800 mb-3 text-sm sm:text-base">5. ¿Por qué razón técnica se debe activar el bloqueo de seguridad (candado) en la capa `Reticula_Soporte` durante el proceso de maquetación?</p>
+              <div class="grid grid-cols-1 gap-2 pl-2 sm:pl-4">
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_5" value="a" required class="mt-0.5 w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                  <span class="font-medium text-slate-700">a) Para evitar desplazamientos accidentales de las líneas guía y retículas de soporte mientras se manipulan objetos sobre el lienzo.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_5" value="b" class="mt-0.5 w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                  <span class="font-medium text-slate-700">b) Para reducir automáticamente el peso en megabytes del archivo PDF exportado.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_5" value="c" class="mt-0.5 w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                  <span class="font-medium text-slate-700">c) Para convertir automáticamente los vectores de la pantalla en mapa de bits de alta calidad.</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- SERIE II: TIPOGRAFÍA AVANZADA EDITORIAL Y MAQUETACIÓN -->
+      <div class="mb-10">
+        <div class="flex items-center mb-6">
+          <div class="h-8 w-2 bg-blue-600 rounded-full mr-3"></div>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900">SERIE II: Tipografía Avanzada Editorial <span class="text-blue-600 text-lg sm:text-xl">(5 Puntos)</span></h2>
+        </div>
+        
+        <section class="glass-panel rounded-2xl p-6 mb-6 border-t border-blue-100">
+          <p class="text-xs sm:text-sm font-medium text-blue-900 mb-6 bg-blue-50/70 p-3 rounded-xl border border-blue-100">
+            Instrucciones: Evalúe los principios de microtipografía, cálculo de interlineado proporcional (Leading), contraste tipográfico y parámetros de hoja membretada (Guía 2). <strong>(Valor: 5 ítems a 1 pt c/u).</strong>
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-blue-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">1. Aplicando la fórmula clásica de interlineado proporcional $Interlineado = 1.2 \times T$, si el cuerpo de texto $T$ mide 10 pt, ¿cuál es el interlineado exacto?</p>
+              <select name="s2_1" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione valor...</option>
+                <option value="12pt">12 pt</option>
+                <option value="10pt">10 pt</option>
+                <option value="15pt">15 pt</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-blue-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">2. Microajuste tipográfico que modifica el espacio individual entre dos caracteres específicos (ej. "AV" o "To") para corregir huecos visuales:</p>
+              <select name="s2_2" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione concepto...</option>
+                <option value="kerning">Kerning</option>
+                <option value="tracking">Tracking</option>
+                <option value="interlineado">Leading / Interlineado</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-blue-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">3. Modificación del espacio uniforme general distribuido a lo largo de todo un bloque de texto o línea de párrafo seleccionada:</p>
+              <select name="s2_3" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione concepto...</option>
+                <option value="tracking">Tracking</option>
+                <option value="kerning">Kerning</option>
+                <option value="malla">Malla de deformación</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-blue-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">4. Dimensiones milimétricas estandarizadas para la maquetación de una Hoja Membretada corporativa a tamaño Carta (Letter):</p>
+              <select name="s2_4" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione dimensión...</option>
+                <option value="carta_mm">Ancho: 215.9 mm | Alto: 279.4 mm</option>
+                <option value="a4_mm">Ancho: 210 mm | Alto: 297 mm</option>
+                <option value="oficio_mm">Ancho: 215.9 mm | Alto: 355.6 mm</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-blue-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">5. Tamaño recomendado de fuente Sans-Serif para maquetar la información corporativa en el pie de página (Footer) de la hoja membretada:</p>
+              <select name="s2_5" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione tamaño...</option>
+                <option value="8_9pt">8 pt a 9 pt</option>
+                <option value="14_16pt">14 pt a 16 pt</option>
+                <option value="4_5pt">4 pt a 5 pt</option>
+              </select>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- SERIE III: TRATAMIENTO DE MAPA DE BITS Y MÁSCARAS DE CAPA -->
+      <div class="mb-10">
+        <div class="flex items-center mb-6">
+          <div class="h-8 w-2 bg-emerald-600 rounded-full mr-3"></div>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900">SERIE III: Tratamiento No Destructivo de Imagen <span class="text-emerald-600 text-lg sm:text-xl">(5 Puntos)</span></h2>
+        </div>
+        
+        <section class="glass-panel rounded-2xl p-6 mb-6 border-t border-emerald-100">
+          <p class="text-xs sm:text-sm font-medium text-emerald-900 mb-6 bg-emerald-50/70 p-3 rounded-xl border border-emerald-100">
+            Instrucciones: Evalúe el revelado fotográfico, la extracción no destructiva con Máscaras de Capa (Layer Masks) e importación de mapas de bits (Guía 3). <strong>(Valor: 5 ítems a 1 pt c/u).</strong>
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">1. Técnica profesional en Photopea/Photoshop que permite ocultar el fondo de una foto mediante escala de grises sin eliminar píxeles definitivamente:</p>
+              <select name="s3_1" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione técnica...</option>
+                <option value="mascara_capa">Máscara de Capa (Layer Mask)</option>
+                <option value="borrador_mágico">Borrador Mágico Destructivo</option>
+                <option value="acoplar_imagen">Acoplar Imagen Sólida</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">2. Formato de exportación recomendado para conservar la transparencia del canal alfa al transferir objetos recortados hacia software vectorial:</p>
+              <select name="s3_2" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione formato...</option>
+                <option value="png">PNG (Portable Network Graphics)</option>
+                <option value="jpg">JPG / JPEG Estándar</option>
+                <option value="bmp">BMP Monocromático</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">3. Al importar un mapa de bits a Inkscape, ¿por qué es obligatorio seleccionar "Incrustar" (Embed) en lugar de "Vincular" (Link)?</p>
+              <select name="s3_3" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione razón...</option>
+                <option value="evitar_ruptura">Para empaquetar la imagen dentro del SVG y evitar que se rompa el enlace al abrirlo en otra computadora.</option>
+                <option value="convertir_vector">Para convertir la foto automáticamente en un dibujo vectorial de 100 nodos.</option>
+                <option value="cambiar_color">Para cambiar el color de fondo de la computadora de destino.</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">4. Operación técnica vectorial en Inkscape (Objeto -> Recorte -> Aplicar) que enmarca un mapa de bits dentro de una forma geométrica trazada:</p>
+              <select name="s3_4" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione función...</option>
+                <option value="mascara_recorte">Máscara de Recorte Vectorial (Clip)</option>
+                <option value="vectorizar_mapa">Vectorización de mapa de bits</option>
+                <option value="agrupar">Agrupar Selección de Objetos</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">5. Menú en Photopea o Photoshop utilizado para ajustar el histograma, contraste, sombras y luces de una fotografía antes de extraerla:</p>
+              <select name="s3_5" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione menú...</option>
+                <option value="niveles_curvas">Imagen -> Ajustes -> Niveles / Curvas</option>
+                <option value="filtro_ruido">Filtro -> Ruido -> Polvo y Rascaduras</option>
+                <option value="edicion_transformar">Edición -> Transformar Libre</option>
+              </select>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- SERIE IV: INTEGRACIÓN VECTOR + BITMAP Y MAQUETACIÓN PUBLICITARIA -->
+      <div class="mb-10">
+        <div class="flex items-center mb-6">
+          <div class="h-8 w-2 bg-purple-600 rounded-full mr-3"></div>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900">SERIE IV: Integración y Composición Publicitaria <span class="text-purple-600 text-lg sm:text-xl">(5 Puntos)</span></h2>
+        </div>
+        
+        <section class="glass-panel rounded-2xl p-6 mb-6 border-t border-purple-100">
+          <p class="text-xs sm:text-sm font-medium text-purple-900 mb-6 bg-purple-50/70 p-3 rounded-xl border border-purple-100">
+            Instrucciones: Evalúe el diseño de afiches mixtos, jerarquía visual y las normas de entrega estipuladas en las Guías 1, 2 y 3. <strong>(Valor: 5 ítems a 1 pt c/u).</strong>
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-purple-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">1. Capa vectorial en la que se deben diseñar los degradados, figuras geométricas abstractas y patrones gráficos en la composición publicitaria:</p>
+              <select name="s4_1" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-purple-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione capa...</option>
+                <option value="capa_1_fondo">Capa 1: Fondo Vectorial</option>
+                <option value="capa_2_bitmap">Capa 2: Imagen de Mapa de Bits</option>
+                <option value="capa_3_texto">Capa 3: Textos y Grafismos</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-purple-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">2. Elemento publicitario primordial situado en el Nivel 1 de jerarquía tipográfica para captar inmediatamente la atención del público:</p>
+              <select name="s4_2" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-purple-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione elemento...</option>
+                <option value="headline_titular">Titular Principal / Eslogan llamativo (Headline)</option>
+                <option value="pie_pagina_minúsculo">Texto legal de pie de página en 6 pt</option>
+                <option value="linea_division">Línea delgada de división</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-purple-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">3. Subcarpeta obligatoria dentro de Google Drive (creada en la Guía 1) donde deben almacenarse los archivos editables de extensión `.svg` o `.ai`:</p>
+              <select name="s4_3" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-purple-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione subcarpeta...</option>
+                <option value="03_archivos_editables">03_Archivos_Editables</option>
+                <option value="04_exportaciones_finales">04_Exportaciones_Finales</option>
+                <option value="01_documentos_pdf">01_Documentos_PDF</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-purple-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">4. Regla estricta de entrega para informes de guías de trabajo en el curso de Diseño Computarizado I:</p>
+              <select name="s4_4" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-purple-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione regla...</option>
+                <option value="solo_pdf">Exportar todo el informe con capturas y texto tecleado en un ÚNICO archivo en formato PDF.</option>
+                <option value="enlaces_canva">Enviar enlaces de Canva sin texto tecleado.</option>
+                <option value="fotos_celular">Subir fotos borrosas tomadas con teléfono celular.</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-purple-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">5. Configuración de privacidad obligatoria que deben tener los enlaces de Google Drive incluidos en la portada del informe PDF:</p>
+              <select name="s4_5" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-purple-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione permiso...</option>
+                <option value="acceso_publico">"Cualquier persona con el enlace puede ver"</option>
+                <option value="restringido_privado">"Restringido - Solo yo puedo ver"</option>
+                <option value="sin_permiso">Bloqueado con contraseña privada</option>
+              </select>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Advertencia Classroom -->
+      <div class="bg-indigo-50 border-l-4 border-indigo-600 p-4 mb-8 rounded-r-2xl shadow-sm no-print">
+        <div class="flex items-start">
+          <div class="flex-shrink-0">
+            <svg class="h-6 w-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-3">
+            <h3 class="text-sm font-bold text-indigo-900 uppercase tracking-wide">Instrucción de Finalización</h3>
+            <div class="mt-1 text-xs sm:text-sm text-indigo-800 font-medium">
+              <p>Al hacer clic en "Terminar y Calificar Evaluación", el sistema procesará sus respuestas de forma automática. Descargue su comprobante en <strong>PDF</strong> para adjuntarlo como evidencia en la entrega de <strong>Google Classroom</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón de Envío -->
+      <div class="flex flex-col justify-center items-center mt-8 no-print">
+        <button type="submit" class="bg-gradient-to-r from-indigo-700 via-indigo-600 to-cyan-700 hover:from-indigo-600 hover:to-cyan-600 text-white font-black py-4 px-12 rounded-2xl shadow-xl shadow-indigo-500/25 transition-all transform hover:-translate-y-1 w-full sm:w-auto text-lg flex items-center justify-center tracking-wide">
+          <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          Terminar y Calificar Evaluación
+        </button>
+      </div>
+    </form>
+
+    <!-- Panel de Resultados (Oculto hasta enviar) -->
+    <div id="results-panel" class="hidden glass-panel rounded-3xl p-8 shadow-2xl border-t-8 border-indigo-600 mt-10 transform transition-all duration-500">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mb-4">Resultados de la Evaluación</h2>
+        <div class="inline-block bg-gradient-to-br from-slate-100 to-slate-200 p-6 rounded-3xl shadow-inner mb-4 border border-slate-200">
+          <span id="final-score" class="text-5xl sm:text-6xl font-black text-indigo-700 drop-shadow-sm">0</span>
+          <span class="text-2xl font-bold text-slate-400">/ 20 Pts</span>
+        </div>
+        <p id="feedback-message" class="text-lg sm:text-xl font-bold mt-2"></p>
+      </div>
+      
+      <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 mb-8 text-xs sm:text-sm text-indigo-900 font-semibold flex items-center">
+        <svg class="w-5 h-5 mr-2 flex-shrink-0 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+        </svg>
+        Prueba calificada técnicamente. Revise los ítems resaltados en verde y rojo para la retroalimentación de sus conocimientos vectoriales y tipográficos.
+      </div>
+
+      <div class="text-center no-print bg-slate-50 p-6 rounded-2xl border border-slate-200">
+        <h3 class="font-black text-slate-900 mb-2 uppercase text-base tracking-wider">Generar Comprobante PDF</h3>
+        <p class="mb-5 text-xs sm:text-sm text-slate-600 font-medium">Guarde su comprobante oficial para adjuntarlo a Google Classroom.</p>
+        
+        <button onclick="window.print()" class="bg-slate-900 hover:bg-black text-white font-bold py-3.5 px-8 rounded-xl shadow-lg transition-all w-full sm:w-auto flex items-center justify-center mx-auto text-sm">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+          </svg>
+          Descargar Comprobante Oficial (PDF)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comprobante Oficial para Impresión PDF -->
+  <div id="print-receipt" class="w-full max-w-4xl mx-auto bg-white p-6">
+    <div class="bg-indigo-800 py-6 px-6 text-center text-white rounded-t-2xl mb-6">
+      <h1 class="text-xl font-black mb-1 uppercase tracking-wider">Instituto Industrial Central "Gral. Lázaro Chacón González"</h1>
+      <h2 class="text-sm font-bold uppercase tracking-wide opacity-90">Comprobante Oficial de Evaluación Digital - Diseño Computarizado I</h2>
+    </div>
+
+    <div class="px-6 py-2">
+      <h3 class="text-sm font-black text-slate-900 mb-4 uppercase tracking-wider border-b border-slate-200 pb-2">Datos Académicos del Estudiante</h3>
+      
+      <div class="grid grid-cols-2 gap-4 text-slate-800 text-sm mb-6 border-b border-slate-200 pb-6">
+        <p><span class="font-bold text-slate-600">Nombre Completo:</span> <br><span id="receipt-name" class="uppercase font-extrabold text-slate-900"></span></p>
+        <p><span class="font-bold text-slate-600">Clave / Carné:</span> <br><span id="receipt-id" class="font-extrabold text-slate-900"></span></p>
+        <p><span class="font-bold text-slate-600">Curso:</span> <br>Diseño Computarizado I (Diseño Gráfico)</p>
+        <p><span class="font-bold text-slate-600">Grado y Sección:</span> <br>4to. Bachillerato en Diseño <span id="receipt-section"></span></p>
+        <p><span class="font-bold text-slate-600">Docente:</span> <br>Prof. Erick Enrique Zamora Paz</p>
+        <p><span class="font-bold text-slate-600">Fecha y Hora de Emisión:</span> <br><span id="receipt-datetime"></span></p>
+      </div>
+
+      <div class="text-center my-8 bg-slate-50 p-6 rounded-2xl border border-slate-200">
+        <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Nota Obtenida</p>
+        <h2 class="text-4xl font-black text-indigo-800 tracking-tight"><span id="receipt-score">0</span> / 20 PUNTOS</h2>
+      </div>
+
+      <div class="text-center text-slate-600 text-xs space-y-2 mb-8 max-w-xl mx-auto">
+        <p>Este comprobante certifica la evaluación parcial No. 1 de la III Unidad (Ciclo Lectivo 2026).</p>
+        <p class="font-bold text-slate-700 mt-4 border border-slate-200 p-3 rounded-xl bg-slate-50 shadow-sm text-[11px]">
+          Adjunte este documento descargado en formato PDF a la tarea correspondiente en Google Classroom.
+        </p>
+      </div>
+
+      <div class="border-t border-slate-200 pt-4 mt-6">
+        <p class="font-mono font-bold text-slate-800 text-xs text-center">CÓDIGO DE VALIDACIÓN TÉCNICA: <br><span id="receipt-code" class="text-indigo-700 font-extrabold"></span></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Clave oficial de respuestas correctas (20 Puntos Totales - 4 Series de 5 Pts)
+    const correctAnswers = {
+      // SERIE I (5 Pts)
+      s1_1: { answer: 'b', points: 1 },
+      s1_2: { answer: 'a', points: 1 },
+      s1_3: { answer: 'a', points: 1 },
+      s1_4: { answer: 'a', points: 1 },
+      s1_5: { answer: 'a', points: 1 },
+
+      // SERIE II (5 Pts)
+      s2_1: { answer: '12pt', points: 1 },
+      s2_2: { answer: 'kerning', points: 1 },
+      s2_3: { answer: 'tracking', points: 1 },
+      s2_4: { answer: 'carta_mm', points: 1 },
+      s2_5: { answer: '8_9pt', points: 1 },
+
+      // SERIE III (5 Pts)
+      s3_1: { answer: 'mascara_capa', points: 1 },
+      s3_2: { answer: 'png', points: 1 },
+      s3_3: { answer: 'evitar_ruptura', points: 1 },
+      s3_4: { answer: 'mascara_recorte', points: 1 },
+      s3_5: { answer: 'niveles_curvas', points: 1 },
+
+      // SERIE IV (5 Pts)
+      s4_1: { answer: 'capa_1_fondo', points: 1 },
+      s4_2: { answer: 'headline_titular', points: 1 },
+      s4_3: { answer: '03_archivos_editables', points: 1 },
+      s4_4: { answer: 'solo_pdf', points: 1 },
+      s4_5: { answer: 'acceso_publico', points: 1 }
+    };
+
+    // Event listener para calificar la evaluación
+    document.getElementById('evaluation-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      let totalScore = 0;
+      const formData = new FormData(this);
+      
+      // Bloquear el formulario
+      this.classList.add('disabled-element');
+      const submitBtn = this.querySelector('button[type="submit"]');
+      if(submitBtn) submitBtn.style.display = 'none';
+
+      // 1. Evaluar Radio buttons (Serie I)
+      ['s1_1', 's1_2', 's1_3', 's1_4', 's1_5'].forEach(name => {
+        const userVal = formData.get(name);
+        const block = document.getElementById('qb-' + name);
+        if(block) {
+          const labels = block.querySelectorAll('label');
+          labels.forEach(label => {
+            const input = label.querySelector('input');
+            if(input.value === correctAnswers[name].answer) {
+              label.classList.add('correct-answer');
+            }
+            if(input.checked && input.value !== correctAnswers[name].answer) {
+              label.classList.add('incorrect-answer');
+            }
+          });
+        }
+
+        if(userVal === correctAnswers[name].answer) {
+          totalScore += correctAnswers[name].points;
+        }
+      });
+
+      // 2. Evaluar Selects (Series II, III, IV)
+      const selects = this.querySelectorAll('select');
+      selects.forEach(select => {
+        const name = select.name;
+        if(correctAnswers[name]) {
+          if(select.value === correctAnswers[name].answer) {
+            totalScore += correctAnswers[name].points;
+            select.classList.add('correct-answer', 'font-bold');
+          } else {
+            select.classList.add('incorrect-answer', 'font-bold');
+            const options = select.options;
+            for(let i = 0; i < options.length; i++) {
+              if(options[i].value === correctAnswers[name].answer) {
+                options[i].text = "✓ " + options[i].text;
+              }
+            }
+          }
+        }
+      });
+
+      totalScore = Math.round(totalScore * 10) / 10;
+
+      // Mostrar resultados y generar comprobante
+      const resultsPanel = document.getElementById('results-panel');
+      const finalScoreEl = document.getElementById('final-score');
+      const feedbackEl = document.getElementById('feedback-message');
+      
+      resultsPanel.classList.remove('hidden');
+      finalScoreEl.textContent = totalScore;
+
+      // Llenar datos de comprobante impreso
+      const studentName = document.getElementById('student-name').value || "Estudiante no identificado";
+      const studentId = document.getElementById('student-id').value || "0";
+      const studentSec = document.getElementById('student-section').value || "A/B";
+      
+      document.getElementById('receipt-name').textContent = studentName;
+      document.getElementById('receipt-id').textContent = studentId;
+      document.getElementById('receipt-section').textContent = `"${studentSec}"`;
+      document.getElementById('receipt-score').textContent = totalScore;
+      
+      const now = new Date();
+      document.getElementById('receipt-datetime').textContent = now.toLocaleString('es-GT');
+      
+      // Código de validación unívoco
+      const nameSub = studentName.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, 'X');
+      const timeStr = now.getTime().toString().slice(-6);
+      document.getElementById('receipt-code').textContent = `DC1-DIS-U3-${nameSub}${studentId}${studentSec}-${timeStr}-${totalScore}PTS`;
+      
+      // Mensaje de retroalimentación
+      if(totalScore >= 18) {
+        feedbackEl.textContent = "¡Excelente nivel técnico! Demuestras un dominio sobresaliente en la maquetación editorial, microtipografía y tratamiento vectorial.";
+        feedbackEl.className = "text-lg sm:text-xl font-black text-emerald-600";
+      } else if(totalScore >= 14) {
+        feedbackEl.textContent = "Buen desempeño. Has aprobado la evaluación parcial; repasa los conceptos de kerning, tracking e incrustación de imágenes.";
+        feedbackEl.className = "text-lg sm:text-xl font-black text-amber-600";
+      } else {
+        feedbackEl.textContent = "Se requiere refuerzo académico. Repasa las guías técnicas de lienzo, sangrado de pre-prensa y máscaras de capa no destructivas.";
+        feedbackEl.className = "text-lg sm:text-xl font-black text-rose-600";
+      }
+
+      setTimeout(() => {
+        resultsPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 250);
+    });
+  </script>
+</body>
+</html>

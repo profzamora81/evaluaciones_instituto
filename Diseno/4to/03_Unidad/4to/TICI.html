@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primer Examen Parcial TIC I - 4to. Bachillerato en Diseño</title>
+  <link rel="icon" type="image/jpeg" href="../../public/Logo.jpeg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600" rel="stylesheet">
+  
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    code, pre { font-family: 'Fira Code', monospace; }
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+    }
+    .correct-answer { background-color: #dcfce7 !important; border-color: #22c55e !important; color: #166534 !important; }
+    .incorrect-answer { background-color: #fee2e2 !important; border-color: #ef4444 !important; color: #991b1b !important; }
+    .disabled-element { pointer-events: none; opacity: 0.88; }
+    
+    @media print {
+      @page { margin: 1.5cm; }
+      .no-print { display: none !important; }
+      body { 
+        background-color: white !important; 
+        background-image: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .glass-panel { box-shadow: none; border: 1px solid #e2e8f0; }
+      .main-evaluation-content { display: none !important; }
+      #print-receipt { display: block !important; }
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    }
+    #print-receipt { display: none; }
+  </style>
+</head>
+<body class="text-slate-800 antialiased py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-100 via-rose-50/40 to-violet-50 min-h-screen">
+
+  <div class="max-w-4xl mx-auto main-evaluation-content">
+    <!-- Encabezado Institucional -->
+    <header class="glass-panel rounded-3xl p-6 sm:p-8 mb-8 text-center border-t-8 border-rose-600 relative overflow-hidden">
+      <div class="absolute top-0 right-0 -mt-4 -mr-4 w-28 h-28 bg-gradient-to-br from-rose-400 to-violet-600 rounded-full opacity-15 blur-2xl"></div>
+      <div class="absolute bottom-0 left-0 -mb-4 -ml-4 w-28 h-28 bg-gradient-to-tr from-pink-400 to-rose-500 rounded-full opacity-15 blur-2xl"></div>
+      
+      <div class="relative z-10">
+        <div class="inline-flex items-center justify-center mb-3 p-2 bg-white rounded-2xl shadow-sm border border-slate-200">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 bg-rose-600 rounded-xl flex items-center justify-center text-white font-black text-2xl tracking-wider shadow-inner">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-teal-600 rounded-xl flex items-center justify-center text-white font-black text-2xl tracking-wider shadow-inner">
+                <img src="../../public/Logo.jpeg" alt="Logo Instituto Lázaro Chacón González" class="w-24 h-24 sm:w-28 sm:h-28 object-contain rounded-xl">
+            </div>
+          </div>
+        </div>
+        <h1 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight uppercase">Instituto Industrial Central "General Lázaro Chacón González"</h1>
+        <p class="text-xs sm:text-sm font-semibold text-slate-500 mt-1">Bachillerato en Ciencias y Letras con Orientación en Diseño</p>
+        <h2 class="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-700 via-pink-600 to-violet-700 mt-2">Primer Examen Parcial de TIC I</h2>
+        <p class="text-xs font-bold text-rose-600 tracking-widest uppercase mt-1">III Unidad - Ciclo Lectivo 2026</p>
+        
+        <div class="mt-4 flex flex-wrap justify-center gap-2 text-xs sm:text-sm font-medium">
+          <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full border border-slate-200"><strong>Curso:</strong> Tecnologías de la Información y Comunicación I</span>
+          <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full border border-slate-200"><strong>Grado:</strong> 4to. Bachillerato Diseño</span>
+          <span class="bg-rose-100 text-rose-900 px-3 py-1 rounded-full border border-rose-200 font-bold"><strong>Valor Total:</strong> 20 Puntos</span>
+        </div>
+        <p class="text-slate-500 mt-3 text-xs sm:text-sm"><strong>Docente:</strong> Prof. Erick Enrique Zamora Paz</p>
+      </div>
+    </header>
+
+    <!-- Advertencia de Integridad -->
+    <div class="bg-amber-50 border-l-4 border-amber-500 p-4 mb-8 rounded-r-2xl shadow-sm no-print">
+      <div class="flex items-start">
+        <div class="flex-shrink-0">
+          <svg class="h-6 w-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+          </svg>
+        </div>
+        <div class="ml-3">
+          <h3 class="text-sm font-bold text-amber-800 uppercase tracking-wide">Instrucciones Generales</h3>
+          <div class="mt-1 text-xs sm:text-sm text-amber-700 font-medium">
+            <p>La presente evaluación parcial consta de <strong>4 Series evaluativas (5 Puntos cada una = 20 Pts Totales)</strong> basadas en las Guías 1, 2 y 3. Lea con atención cada enunciado antes de seleccionar su respuesta. La resolución es estrictamente individual.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form id="evaluation-form">
+      <!-- Datos del Estudiante -->
+      <section class="glass-panel rounded-2xl p-6 mb-8 border-l-4 border-rose-500 hover:shadow-md transition-shadow">
+        <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center">
+          <svg class="w-6 h-6 mr-2 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+          </svg>
+          Datos del Estudiante
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Nombre Completo</label>
+            <input type="text" id="student-name" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all text-sm font-medium" placeholder="Apellidos, Nombres">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Clave / Carné</label>
+            <input type="number" id="student-id" required min="1" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all text-sm font-medium" placeholder="Ej. 15">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Sección</label>
+            <select id="student-section" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all text-sm font-medium">
+              <option value="" disabled selected>Seleccione...</option>
+              <option value="A">Sección A</option>
+              <option value="B">Sección B</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERIE I: BÚSQUEDA AVANZADA Y CURACIÓN DE CONTENIDOS GRÁFICOS -->
+      <div class="mb-10">
+        <div class="flex items-center mb-6">
+          <div class="h-8 w-2 bg-rose-600 rounded-full mr-3"></div>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900">SERIE I: Búsqueda Avanzada y Curación de Contenidos <span class="text-rose-600 text-lg sm:text-xl">(5 Puntos)</span></h2>
+        </div>
+        
+        <section class="glass-panel rounded-2xl p-6 mb-6 border-t border-rose-100">
+          <p class="text-xs sm:text-sm font-medium text-rose-900 mb-6 bg-rose-50/70 p-3 rounded-xl border border-rose-100">
+            Instrucciones: Analice las técnicas de curación web, sintaxis de búsqueda y fundamentos de diseño (Guía 1). Seleccione la opción correcta para cada ítem. <strong>(Valor: 5 ítems a 1 pt c/u).</strong>
+          </p>
+
+          <div class="space-y-6">
+            <!-- Q1 -->
+            <div class="question-block" id="qb-s1_1">
+              <p class="font-semibold text-slate-800 mb-3 text-sm sm:text-base">1. ¿Qué comando de búsqueda avanzada en el navegador permite restringir los resultados a manuales o documentos académicos exclusivamente en formato PDF?</p>
+              <div class="grid grid-cols-1 gap-2 pl-2 sm:pl-4">
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-rose-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_1" value="a" required class="mt-0.5 w-4 h-4 text-rose-600 focus:ring-rose-500">
+                  <span class="font-medium text-slate-700">a) `format:pdf`</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-rose-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_1" value="b" class="mt-0.5 w-4 h-4 text-rose-600 focus:ring-rose-500">
+                  <span class="font-medium text-slate-700">b) `filetype:pdf`</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-rose-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_1" value="c" class="mt-0.5 w-4 h-4 text-rose-600 focus:ring-rose-500">
+                  <span class="font-medium text-slate-700">c) `doc:pdf`</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question-block" id="qb-s1_2">
+              <p class="font-semibold text-slate-800 mb-3 text-sm sm:text-base">2. Al investigar sobre "Armonías Cromáticas", ¿para qué sirve encerrar la búsqueda entre comillas dobles `"armonías cromáticas"`?</p>
+              <div class="grid grid-cols-1 gap-2 pl-2 sm:pl-4">
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-rose-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_2" value="a" required class="mt-0.5 w-4 h-4 text-rose-600 focus:ring-rose-500">
+                  <span class="font-medium text-slate-700">a) Para buscar exactamente esa frase con las palabras en ese orden secuencial específico.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-rose-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_2" value="b" class="mt-0.5 w-4 h-4 text-rose-600 focus:ring-rose-500">
+                  <span class="font-medium text-slate-700">b) Para traducir la frase automáticamente al idioma inglés.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-rose-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_2" value="c" class="mt-0.5 w-4 h-4 text-rose-600 focus:ring-rose-500">
+                  <span class="font-medium text-slate-700">c) Para buscar únicamente imágenes en color negro y blanco.</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question-block" id="qb-s1_3">
+              <p class="font-semibold text-slate-800 mb-3 text-sm sm:text-base">3. En la gestión de color para proyectos gráficos, ¿cuál es la diferencia técnica fundamental entre el modelo RGB y el modelo CMYK?</p>
+              <div class="grid grid-cols-1 gap-2 pl-2 sm:pl-4">
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-rose-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_3" value="a" required class="mt-0.5 w-4 h-4 text-rose-600 focus:ring-rose-500">
+                  <span class="font-medium text-slate-700">a) RGB se utiliza para proyectos impresos en papel y CMYK para pantallas digitales.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-rose-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_3" value="b" class="mt-0.5 w-4 h-4 text-rose-600 focus:ring-rose-500">
+                  <span class="font-medium text-slate-700">b) RGB es un modelo aditivo de luz para dispositivos digitales (pantallas), mientras que CMYK es un modelo sustractivo de pigmentos para medios impresos.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-rose-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_3" value="c" class="mt-0.5 w-4 h-4 text-rose-600 focus:ring-rose-500">
+                  <span class="font-medium text-slate-700">c) No existe diferencia; ambos modelos producen exactamente la misma respuesta cromática en imprenta.</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question-block" id="qb-s1_4">
+              <p class="font-semibold text-slate-800 mb-3 text-sm sm:text-base">4. ¿Cuál de las siguientes opciones describe el principio de percepción visual de las Leyes de la Gestalt aplicadas al diseño gráfico?</p>
+              <div class="grid grid-cols-1 gap-2 pl-2 sm:pl-4">
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-rose-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_4" value="a" required class="mt-0.5 w-4 h-4 text-rose-600 focus:ring-rose-500">
+                  <span class="font-medium text-slate-700">a) Explicar cómo el cerebro humano organiza e interpreta elementos visuales individuales como un todo estructurado (Cierre, Proximidad, Semejanza).</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-rose-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_4" value="b" class="mt-0.5 w-4 h-4 text-rose-600 focus:ring-rose-500">
+                  <span class="font-medium text-slate-700">b) Definir la resolución en megapíxeles que debe tener una fotografía digital.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-rose-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_4" value="c" class="mt-0.5 w-4 h-4 text-rose-600 focus:ring-rose-500">
+                  <span class="font-medium text-slate-700">c) Calcular el costo financiero de la impresión de un afiche publicitario.</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question-block" id="qb-s1_5">
+              <p class="font-semibold text-slate-800 mb-3 text-sm sm:text-base">5. ¿Por qué es indispensable que un diseñador elabore un registro bibliográfico formal con autor, fecha, título y entidad editora al investigar fundamentos visuales?</p>
+              <div class="grid grid-cols-1 gap-2 pl-2 sm:pl-4">
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-rose-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_5" value="a" required class="mt-0.5 w-4 h-4 text-rose-600 focus:ring-rose-500">
+                  <span class="font-medium text-slate-700">a) Garantiza la validez científica, respalda la calidad de la investigación y demuestra respeto ético a los derechos de autor pregonados en el CNB.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-rose-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_5" value="b" class="mt-0.5 w-4 h-4 text-rose-600 focus:ring-rose-500">
+                  <span class="font-medium text-slate-700">b) Es un requisito exclusivo para subir fotos a la red social Instagram.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-rose-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_5" value="c" class="mt-0.5 w-4 h-4 text-rose-600 focus:ring-rose-500">
+                  <span class="font-medium text-slate-700">c) Es una regla para comprimir archivos JPG a menor peso.</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- SERIE II: SEGMENTACIÓN DE PÚBLICO Y ESTILOS GRÁFICOS -->
+      <div class="mb-10">
+        <div class="flex items-center mb-6">
+          <div class="h-8 w-2 bg-indigo-600 rounded-full mr-3"></div>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900">SERIE II: Público Objetivo y Estilos Gráficos <span class="text-indigo-600 text-lg sm:text-xl">(5 Puntos)</span></h2>
+        </div>
+        
+        <section class="glass-panel rounded-2xl p-6 mb-6 border-t border-indigo-100">
+          <p class="text-xs sm:text-sm font-medium text-indigo-900 mb-6 bg-indigo-50/70 p-3 rounded-xl border border-indigo-100">
+            Instrucciones: Evalúe los principios de segmentación de mercado, perfiles de usuario y movimientos del diseño (Guía 2). <strong>(Valor: 5 ítems a 1 pt c/u).</strong>
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-indigo-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">1. Al definir un público objetivo (Target Audience), la edad y la ubicación geográfica corresponden a datos de tipo:</p>
+              <select name="s2_1" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione tipo...</option>
+                <option value="demografico">Datos Demográficos</option>
+                <option value="psicografico">Datos Psicográficos</option>
+                <option value="geodesico">Datos Geodésicos</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-indigo-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">2. Los intereses, valores, preferencias estéticas y consumo de redes sociales del público objetivo constituyen datos:</p>
+              <select name="s2_2" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione tipo...</option>
+                <option value="psicografico">Datos Psicográficos</option>
+                <option value="demografico">Datos Demográficos</option>
+                <option value="financieros">Datos Financieros</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-indigo-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">3. Estilo gráfico caracterizado por la simplicidad, reducción de elementos al mínimo esencial y amplio uso de espacio negativo:</p>
+              <select name="s2_3" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione estilo...</option>
+                <option value="minimalismo">Minimalista / Flat Design</option>
+                <option value="grunge">Grunge / Punk</option>
+                <option value="barroco">Barroco Recargado</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-indigo-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">4. Escuela de diseño histórica que popularizó el principio "La función sigue a la forma" y la integración entre arte e industria:</p>
+              <select name="s2_4" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione movimiento...</option>
+                <option value="bauhaus">Bauhaus</option>
+                <option value="pop_art">Pop Art</option>
+                <option value="art_nouveau">Art Nouveau</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-indigo-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">5. Clasificación tipográfica caracterizada por no tener remates ni adornos en los extremos, ideal para lectura digital en pantallas:</p>
+              <select name="s2_5" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione familia...</option>
+                <option value="sans_serif">Sans-Serif (Palo Seco)</option>
+                <option value="serif">Serif (Con Remates)</option>
+                <option value="gothic">Gótica Tradicional</option>
+              </select>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- SERIE III: BASES DE DATOS DE REFERENCIAS Y LICENCIAMIENTO DIGITAL -->
+      <div class="mb-10">
+        <div class="flex items-center mb-6">
+          <div class="h-8 w-2 bg-emerald-600 rounded-full mr-3"></div>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900">SERIE III: Bases de Datos y Licenciamiento Digital <span class="text-emerald-600 text-lg sm:text-xl">(5 Puntos)</span></h2>
+        </div>
+        
+        <section class="glass-panel rounded-2xl p-6 mb-6 border-t border-emerald-100">
+          <p class="text-xs sm:text-sm font-medium text-emerald-900 mb-6 bg-emerald-50/70 p-3 rounded-xl border border-emerald-100">
+            Instrucciones: Evalúe la estructuración de catálogos en Google Sheets y los esquemas de licenciamiento de activos (Guías 2 y 3). <strong>(Valor: 5 ítems a 1 pt c/u).</strong>
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">1. Subcarpeta estandarizada en Google Drive indicada en la Guía 2 para almacenar las tablas de datos y catálogos en Sheets:</p>
+              <select name="s3_1" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione subcarpeta...</option>
+                <option value="folder_tablas">03_Tablas_y_Formularios</option>
+                <option value="folder_docs">01_Documentos</option>
+                <option value="folder_ref">02_Referencias_Visuales</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">2. Número obligatorio de columnas requeridas para el inventario de referencias visuales en Google Sheets (N., Descripción, Estilo, Licencia, Enlace):</p>
+              <select name="s3_2" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione cantidad...</option>
+                <option value="5_cols">Exactamente 5 Columnas</option>
+                <option value="3_cols">3 Columnas</option>
+                <option value="10_cols">10 Columnas</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">3. Licencia que otorga libertad para usar, modificar y distribuir la obra, exigiendo únicamente dar crédito obligatorio al autor original:</p>
+              <select name="s3_3" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione licencia...</option>
+                <option value="cc_by">Creative Commons Atribución (CC-BY)</option>
+                <option value="copyright">Copyright Tradicional (Todos los derechos reservados)</option>
+                <option value="cc_nc_nd">CC Atribución-NoComercial-SinDerivadas</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">4. Condición de las obras cuyo plazo de protección legal de autor ha expirado y pueden ser usadas libremente sin restricción:</p>
+              <select name="s3_4" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione condición...</option>
+                <option value="dominio_publico">Dominio Público (Public Domain)</option>
+                <option value="marca_registrada">Marca Registrada (®)</option>
+                <option value="patente">Patente Industrial Comercial</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">5. La restricción NC (Non-Commercial) dentro de una licencia Creative Commons prohíbe explícitamente:</p>
+              <select name="s3_5" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione prohibición...</option>
+                <option value="uso_comercial">Utilizar el recurso en proyectos que generen ganancias económicas o ventas comerciales</option>
+                <option value="descargar">Descargar la imagen al disco duro</option>
+                <option value="ver_pantalla">Visualizar el archivo en navegadores web</option>
+              </select>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- SERIE IV: ÉTICA PROFESIONAL, PLAGIO VISUAL Y APROPIACIÓN CULTURAL -->
+      <div class="mb-10">
+        <div class="flex items-center mb-6">
+          <div class="h-8 w-2 bg-purple-600 rounded-full mr-3"></div>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900">SERIE IV: Ética Profesional, Plagio y Cultura <span class="text-purple-600 text-lg sm:text-xl">(5 Puntos)</span></h2>
+        </div>
+        
+        <section class="glass-panel rounded-2xl p-6 mb-6 border-t border-purple-100">
+          <p class="text-xs sm:text-sm font-medium text-purple-900 mb-6 bg-purple-50/70 p-3 rounded-xl border border-purple-100">
+            Instrucciones: Evalúe el análisis crítico sobre propiedad intelectual, plagio visual y el contexto de Guatemala (Guía 3). <strong>(Valor: 5 ítems a 1 pt c/u).</strong>
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-purple-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">1. Tipo de derecho de autor que reconoce perpetuamente la paternidad del creador sobre su obra y es inalienable e irrenunciable:</p>
+              <select name="s4_1" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-purple-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione derecho...</option>
+                <option value="derecho_moral">Derecho Moral de Autor</option>
+                <option value="derecho_patrimonial">Derecho Patrimonial</option>
+                <option value="derecho_mercantil">Derecho Mercantil</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-purple-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">2. Acción ilegal y antiética en la que un diseñador copia de forma directa, calca un vector o adopta un logotipo ajeno presentándolo como propio:</p>
+              <select name="s4_2" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-purple-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione falta...</option>
+                <option value="plagio_visual">Plagio Visual</option>
+                <option value="inspiracion">Inspiración de Tendencias</option>
+                <option value="curacion">Curación de Contenidos</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-purple-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">3. Fenómeno socio-tecnológico que limita a artesanos rurales de Guatemala para registrar digitalmente sus diseños en la web por falta de equipos e internet:</p>
+              <select name="s4_3" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-purple-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione concepto...</option>
+                <option value="brecha_digital">Brecha Digital</option>
+                <option value="analfabetismo_grafico">Analfabetismo Gráfico</option>
+                <option value="desconexion_urbana">Desconexión Urbana</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-purple-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">4. La apropiación indebida de tejidos e iconografías tradicionales mayas por marcas internacionales sin consentimiento ni compensación constituye:</p>
+              <select name="s4_4" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-purple-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione problema...</option>
+                <option value="apropiacion_cultural">Apropiación Cultural Indebida</option>
+                <option value="co_creacion">Co-creación Sostenible</option>
+                <option value="intercambio_justo">Intercambio Cultural Justo</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-purple-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">5. Regla de oro obligatoria estipulada en todas las Guías del curso para la entrega final de proyectos en Classroom:</p>
+              <select name="s4_5" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-purple-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione regla...</option>
+                <option value="solo_pdf">Exportar la investigación e imágenes tecleadas en un ÚNICO documento PDF consolidado</option>
+                <option value="link_canva">Enviar un enlace público editable de Canva por correo electrónico</option>
+                <option value="foto_cuaderno">Subir fotografías tomadas al cuaderno de apuntes</option>
+              </select>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Advertencia Classroom -->
+      <div class="bg-rose-50 border-l-4 border-rose-600 p-4 mb-8 rounded-r-2xl shadow-sm no-print">
+        <div class="flex items-start">
+          <div class="flex-shrink-0">
+            <svg class="h-6 w-6 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+          </div>
+          <div class="ml-3">
+            <h3 class="text-sm font-bold text-rose-900 uppercase tracking-wide">Instrucción de Entrega - Google Classroom</h3>
+            <div class="mt-1 text-xs sm:text-sm text-rose-800 font-medium">
+              <p>Al finalizar la evaluación, haga clic en "Terminar y Calificar". Descargue su comprobante oficial en formato <strong>PDF</strong> y adjúntelo a la tarea en <strong>Google Classroom</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón de Envío -->
+      <div class="flex flex-col justify-center items-center mt-8 no-print">
+        <button type="submit" class="bg-gradient-to-r from-rose-700 via-pink-600 to-violet-700 hover:from-rose-600 hover:to-violet-600 text-white font-black py-4 px-12 rounded-2xl shadow-xl shadow-rose-500/25 transition-all transform hover:-translate-y-1 w-full sm:w-auto text-lg flex items-center justify-center tracking-wide">
+          <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          Terminar y Calificar Evaluación
+        </button>
+      </div>
+    </form>
+
+    <!-- Resultados (Oculto inicialmente) -->
+    <div id="results-panel" class="hidden glass-panel rounded-3xl p-8 shadow-2xl border-t-8 border-rose-500 mt-10 transform transition-all duration-500">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mb-4">Resultados de la Evaluación</h2>
+        <div class="inline-block bg-gradient-to-br from-slate-100 to-slate-200 p-6 rounded-3xl shadow-inner mb-4 border border-slate-200">
+          <span id="final-score" class="text-5xl sm:text-6xl font-black text-rose-600 drop-shadow-sm">0</span>
+          <span class="text-2xl font-bold text-slate-400">/ 20 Pts</span>
+        </div>
+        <p id="feedback-message" class="text-lg sm:text-xl font-bold mt-2"></p>
+      </div>
+      
+      <div class="bg-rose-50 p-4 rounded-xl border border-rose-200 mb-8 text-xs sm:text-sm text-rose-900 font-semibold flex items-center">
+        <svg class="w-5 h-5 mr-2 flex-shrink-0 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+        </svg>
+        Prueba calificada automáticamente. Revise las respuestas correctas resaltadas en verde para retroalimentación personal.
+      </div>
+
+      <div class="text-center no-print bg-slate-50 p-6 rounded-2xl border border-slate-200">
+        <h3 class="font-black text-slate-900 mb-2 uppercase text-base tracking-wider">Generar Comprobante PDF</h3>
+        <p class="mb-5 text-xs sm:text-sm text-slate-600 font-medium">Guarde su comprobante oficial para adjuntarlo a Google Classroom.</p>
+        
+        <button onclick="window.print()" class="bg-slate-900 hover:bg-black text-white font-bold py-3.5 px-8 rounded-xl shadow-lg transition-all w-full sm:w-auto flex items-center justify-center mx-auto text-sm">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+          </svg>
+          Descargar Comprobante Oficial (PDF)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comprobante Oficial para Impresión PDF -->
+  <div id="print-receipt" class="w-full max-w-4xl mx-auto bg-white p-6">
+    <div class="bg-rose-700 py-6 px-6 text-center text-white rounded-t-2xl mb-6">
+      <h1 class="text-xl font-black mb-1 uppercase tracking-wider">Instituto Industrial Central "Gral. Lázaro Chacón González"</h1>
+      <h2 class="text-sm font-bold uppercase tracking-wide opacity-90">Comprobante Oficial de Evaluación Digital - TIC I (Diseño Gráfico)</h2>
+    </div>
+
+    <div class="px-6 py-2">
+      <h3 class="text-sm font-black text-slate-900 mb-4 uppercase tracking-wider border-b border-slate-200 pb-2">Datos Académicos del Estudiante</h3>
+      
+      <div class="grid grid-cols-2 gap-4 text-slate-800 text-sm mb-6 border-b border-slate-200 pb-6">
+        <p><span class="font-bold text-slate-600">Nombre Completo:</span> <br><span id="receipt-name" class="uppercase font-extrabold text-slate-900"></span></p>
+        <p><span class="font-bold text-slate-600">Clave / Carné:</span> <br><span id="receipt-id" class="font-extrabold text-slate-900"></span></p>
+        <p><span class="font-bold text-slate-600">Curso:</span> <br>Tecnologías de la Información y Comunicación I (TIC I)</p>
+        <p><span class="font-bold text-slate-600">Grado y Sección:</span> <br>4to. Bachillerato en Diseño <span id="receipt-section"></span></p>
+        <p><span class="font-bold text-slate-600">Docente:</span> <br>Prof. Erick Enrique Zamora Paz</p>
+        <p><span class="font-bold text-slate-600">Fecha y Hora de Emisión:</span> <br><span id="receipt-datetime"></span></p>
+      </div>
+
+      <div class="text-center my-8 bg-slate-50 p-6 rounded-2xl border border-slate-200">
+        <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Nota Obtenida</p>
+        <h2 class="text-4xl font-black text-rose-700 tracking-tight"><span id="receipt-score">0</span> / 20 PUNTOS</h2>
+      </div>
+
+      <div class="text-center text-slate-600 text-xs space-y-2 mb-8 max-w-xl mx-auto">
+        <p>Este comprobante certifica la evaluación parcial de la III Unidad (Ciclo Lectivo 2026).</p>
+        <p class="font-bold text-slate-700 mt-4 border border-slate-200 p-3 rounded-xl bg-slate-50 shadow-sm text-[11px]">
+          Sube este comprobante descargado en PDF a la plataforma Google Classroom.
+        </p>
+      </div>
+
+      <div class="border-t border-slate-200 pt-4 mt-6">
+        <p class="font-mono font-bold text-slate-800 text-xs text-center">CÓDIGO DE VALIDACIÓN UNIFICADO: <br><span id="receipt-code" class="text-rose-600 font-extrabold"></span></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Clave de respuestas correctas (20 Puntos Totales - 4 Series de 5 Pts)
+    const correctAnswers = {
+      // SERIE I (5 Pts)
+      s1_1: { answer: 'b', points: 1 },
+      s1_2: { answer: 'a', points: 1 },
+      s1_3: { answer: 'b', points: 1 },
+      s1_4: { answer: 'a', points: 1 },
+      s1_5: { answer: 'a', points: 1 },
+
+      // SERIE II (5 Pts)
+      s2_1: { answer: 'demografico', points: 1 },
+      s2_2: { answer: 'psicografico', points: 1 },
+      s2_3: { answer: 'minimalismo', points: 1 },
+      s2_4: { answer: 'bauhaus', points: 1 },
+      s2_5: { answer: 'sans_serif', points: 1 },
+
+      // SERIE III (5 Pts)
+      s3_1: { answer: 'folder_tablas', points: 1 },
+      s3_2: { answer: '5_cols', points: 1 },
+      s3_3: { answer: 'cc_by', points: 1 },
+      s3_4: { answer: 'dominio_publico', points: 1 },
+      s3_5: { answer: 'uso_comercial', points: 1 },
+
+      // SERIE IV (5 Pts)
+      s4_1: { answer: 'derecho_moral', points: 1 },
+      s4_2: { answer: 'plagio_visual', points: 1 },
+      s4_3: { answer: 'brecha_digital', points: 1 },
+      s4_4: { answer: 'apropiacion_cultural', points: 1 },
+      s4_5: { answer: 'solo_pdf', points: 1 }
+    };
+
+    // Event listener principal de calificación
+    document.getElementById('evaluation-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      let totalScore = 0;
+      const formData = new FormData(this);
+      
+      // Bloquear el formulario contra modificaciones
+      this.classList.add('disabled-element');
+      const submitBtn = this.querySelector('button[type="submit"]');
+      if(submitBtn) submitBtn.style.display = 'none';
+
+      // 1. Evaluar Radio buttons (Serie I)
+      ['s1_1', 's1_2', 's1_3', 's1_4', 's1_5'].forEach(name => {
+        const userVal = formData.get(name);
+        const block = document.getElementById('qb-' + name);
+        if(block) {
+          const labels = block.querySelectorAll('label');
+          labels.forEach(label => {
+            const input = label.querySelector('input');
+            if(input.value === correctAnswers[name].answer) {
+              label.classList.add('correct-answer');
+            }
+            if(input.checked && input.value !== correctAnswers[name].answer) {
+              label.classList.add('incorrect-answer');
+            }
+          });
+        }
+
+        if(userVal === correctAnswers[name].answer) {
+          totalScore += correctAnswers[name].points;
+        }
+      });
+
+      // 2. Evaluar Selects (Series II, III, IV)
+      const selects = this.querySelectorAll('select');
+      selects.forEach(select => {
+        const name = select.name;
+        if(correctAnswers[name]) {
+          if(select.value === correctAnswers[name].answer) {
+            totalScore += correctAnswers[name].points;
+            select.classList.add('correct-answer', 'font-bold');
+          } else {
+            select.classList.add('incorrect-answer', 'font-bold');
+            const options = select.options;
+            for(let i = 0; i < options.length; i++) {
+              if(options[i].value === correctAnswers[name].answer) {
+                options[i].text = "✓ " + options[i].text;
+              }
+            }
+          }
+        }
+      });
+
+      totalScore = Math.round(totalScore * 10) / 10;
+
+      // Mostrar Panel de Resultados
+      const resultsPanel = document.getElementById('results-panel');
+      const finalScoreEl = document.getElementById('final-score');
+      const feedbackEl = document.getElementById('feedback-message');
+      
+      resultsPanel.classList.remove('hidden');
+      finalScoreEl.textContent = totalScore;
+
+      // Llenar comprobante oficial
+      const studentName = document.getElementById('student-name').value || "Estudiante no identificado";
+      const studentId = document.getElementById('student-id').value || "0";
+      const studentSec = document.getElementById('student-section').value || "A/B";
+      
+      document.getElementById('receipt-name').textContent = studentName;
+      document.getElementById('receipt-id').textContent = studentId;
+      document.getElementById('receipt-section').textContent = `"${studentSec}"`;
+      document.getElementById('receipt-score').textContent = totalScore;
+      
+      const now = new Date();
+      document.getElementById('receipt-datetime').textContent = now.toLocaleString('es-GT');
+      
+      // Código de validación único
+      const nameSub = studentName.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, 'X');
+      const timeStr = now.getTime().toString().slice(-6);
+      document.getElementById('receipt-code').textContent = `TICI-DIS-U3-${nameSub}${studentId}${studentSec}-${timeStr}-${totalScore}PTS`;
+      
+      // Retroalimentación según nota
+      if(totalScore >= 18) {
+        feedbackEl.textContent = "¡Excelente desempeño! Demuestras un gran dominio de la curación de información, licenciamiento digital y ética del diseño.";
+        feedbackEl.className = "text-lg sm:text-xl font-black text-emerald-600";
+      } else if(totalScore >= 14) {
+        feedbackEl.textContent = "Buen trabajo. Has aprobado la evaluación parcial, pero se recomienda repasar las licencias Creative Commons y la brecha digital.";
+        feedbackEl.className = "text-lg sm:text-xl font-black text-amber-600";
+      } else {
+        feedbackEl.textContent = "Se requiere refuerzo académico. Repasa las guías técnicas de búsqueda avanzada, derechos de autor y estilos gráficos.";
+        feedbackEl.className = "text-lg sm:text-xl font-black text-rose-600";
+      }
+
+      setTimeout(() => {
+        resultsPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 250);
+    });
+  </script>
+</body>
+</html>

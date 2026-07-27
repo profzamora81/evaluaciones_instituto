@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primer Examen Parcial TIC I - 4to. Bachillerato en Mecánica</title>
+  <link rel="icon" type="image/jpeg" href="../../public/Logo.jpeg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600" rel="stylesheet">
+  
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    code, pre { font-family: 'Fira Code', monospace; }
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+    }
+    .correct-answer { background-color: #fef3c7 !important; border-color: #f59e0b !important; color: #92400e !important; }
+    .incorrect-answer { background-color: #fee2e2 !important; border-color: #ef4444 !important; color: #991b1b !important; }
+    .disabled-element { pointer-events: none; opacity: 0.88; }
+    
+    @media print {
+      @page { margin: 1.5cm; }
+      .no-print { display: none !important; }
+      body { 
+        background-color: white !important; 
+        background-image: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .glass-panel { box-shadow: none; border: 1px solid #e2e8f0; }
+      .main-evaluation-content { display: none !important; }
+      #print-receipt { display: block !important; }
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    }
+    #print-receipt { display: none; }
+  </style>
+</head>
+<body class="text-slate-800 antialiased py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-100 via-amber-50/40 to-orange-50 min-h-screen">
+
+  <div class="max-w-4xl mx-auto main-evaluation-content">
+    <header class="glass-panel rounded-3xl p-6 sm:p-8 mb-8 text-center border-t-8 border-amber-600 relative overflow-hidden">
+      <div class="absolute top-0 right-0 -mt-4 -mr-4 w-28 h-28 bg-gradient-to-br from-amber-400 to-orange-600 rounded-full opacity-15 blur-2xl"></div>
+      <div class="absolute bottom-0 left-0 -mb-4 -ml-4 w-28 h-28 bg-gradient-to-tr from-yellow-400 to-amber-500 rounded-full opacity-15 blur-2xl"></div>
+      
+      <div class="relative z-10">
+        <div class="inline-flex items-center justify-center mb-3 p-2 bg-white rounded-2xl shadow-sm border border-slate-200">
+          <div class="inline-flex items-center justify-center mb-3 p-2 bg-white rounded-2xl shadow-sm border border-slate-200">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 bg-rose-600 rounded-xl flex items-center justify-center text-white font-black text-2xl tracking-wider shadow-inner">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-teal-600 rounded-xl flex items-center justify-center text-white font-black text-2xl tracking-wider shadow-inner">
+                <img src="../../public/Logo.jpeg" alt="Logo Instituto Lázaro Chacón González" class="w-24 h-24 sm:w-28 sm:h-28 object-contain rounded-xl">
+            </div>
+          </div>
+        </div>
+        </div>
+        
+        <h1 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight uppercase">Instituto Industrial Central "General Lázaro Chacón González"</h1>
+        <p class="text-xs sm:text-sm font-semibold text-slate-500 mt-1">Bachillerato en Ciencias y Letras con Orientación en Mecánica Automotriz</p>
+        <h2 class="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-700 via-orange-600 to-amber-700 mt-2">Primer Examen Parcial de TIC I</h2>
+        <p class="text-xs font-bold text-amber-600 tracking-widest uppercase mt-1">III Unidad - Ciclo Lectivo 2026</p>
+        
+        <div class="mt-4 flex flex-wrap justify-center gap-2 text-xs sm:text-sm font-medium">
+          <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full border border-slate-200"><strong>Curso:</strong> Tecnologías de la Información y Comunicación I</span>
+          <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full border border-slate-200"><strong>Grado:</strong> 4to. Bachillerato Mecánica</span>
+          <span class="bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-200 font-bold"><strong>Valor Total:</strong> 20 Puntos</span>
+        </div>
+        <p class="text-slate-500 mt-3 text-xs sm:text-sm"><strong>Docente:</strong> Prof. Erick Enrique Zamora Paz</p>
+      </div>
+    </header>
+
+    <div class="bg-slate-50 border-l-4 border-slate-500 p-4 mb-8 rounded-r-2xl shadow-sm no-print">
+      <div class="flex items-start">
+        <div class="flex-shrink-0">
+          <svg class="h-6 w-6 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
+        <div class="ml-3">
+          <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wide">Instrucciones Generales</h3>
+          <div class="mt-1 text-xs sm:text-sm text-slate-700 font-medium">
+            <p>La presente evaluación parcial consta de <strong>4 Series evaluativas (5 Puntos cada una = 20 Pts Totales)</strong> basadas en las Guías 1, 2 y 3. Lea con atención cada enunciado antes de seleccionar su respuesta. La resolución es estrictamente individual.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form id="evaluation-form">
+      <section class="glass-panel rounded-2xl p-6 mb-8 border-l-4 border-amber-500 hover:shadow-md transition-shadow">
+        <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center">
+          <svg class="w-6 h-6 mr-2 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+          </svg>
+          Datos del Alumno
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Nombre Completo</label>
+            <input type="text" id="student-name" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all text-sm font-medium" placeholder="Apellidos, Nombres">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Clave / Carné</label>
+            <input type="number" id="student-id" required min="1" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all text-sm font-medium" placeholder="Ej. 15">
+          </div>
+        </div>
+      </section>
+
+      <div class="mb-10">
+        <div class="flex items-center mb-6">
+          <div class="h-8 w-2 bg-amber-600 rounded-full mr-3"></div>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900">SERIE I: Búsqueda Avanzada y Fundamentos <span class="text-amber-600 text-lg sm:text-xl">(5 Puntos)</span></h2>
+        </div>
+        
+        <section class="glass-panel rounded-2xl p-6 mb-6 border-t border-amber-100">
+          <p class="text-xs sm:text-sm font-medium text-amber-900 mb-6 bg-amber-50/70 p-3 rounded-xl border border-amber-100">
+            Instrucciones: Analice las técnicas de búsqueda web, símbolos automotrices y fundamentos de mecánica (Guía 1). Seleccione la opción correcta. <strong>(Valor: 5 ítems a 1 pt c/u).</strong>
+          </p>
+
+          <div class="space-y-6">
+            <div class="question-block" id="qb-s1_1">
+              <p class="font-semibold text-slate-800 mb-3 text-sm sm:text-base">1. Para localizar exclusivamente manuales de taller o boletines de servicio técnico en formato PDF, ¿qué operador de búsqueda avanzada debe emplear en el navegador?</p>
+              <div class="grid grid-cols-1 gap-2 pl-2 sm:pl-4">
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-amber-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_1" value="a" required class="mt-0.5 w-4 h-4 text-amber-600 focus:ring-amber-500">
+                  <span class="font-medium text-slate-700">a) `site:pdf`</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-amber-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_1" value="b" class="mt-0.5 w-4 h-4 text-amber-600 focus:ring-amber-500">
+                  <span class="font-medium text-slate-700">b) `filetype:pdf`</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-amber-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_1" value="c" class="mt-0.5 w-4 h-4 text-amber-600 focus:ring-amber-500">
+                  <span class="font-medium text-slate-700">c) `"manual pdf"`</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="question-block" id="qb-s1_2">
+              <p class="font-semibold text-slate-800 mb-3 text-sm sm:text-base">2. En el análisis de Seguridad y Salud Ocupacional, ¿qué entidad gubernamental establece las directrices para el correcto manejo de residuos peligrosos (aceites y baterías) en el taller?</p>
+              <div class="grid grid-cols-1 gap-2 pl-2 sm:pl-4">
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-amber-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_2" value="a" required class="mt-0.5 w-4 h-4 text-amber-600 focus:ring-amber-500">
+                  <span class="font-medium text-slate-700">a) Las directrices internacionales de OSHA.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-amber-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_2" value="b" class="mt-0.5 w-4 h-4 text-amber-600 focus:ring-amber-500">
+                  <span class="font-medium text-slate-700">b) La norma europea DIN exclusivamente.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-amber-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_2" value="c" class="mt-0.5 w-4 h-4 text-amber-600 focus:ring-amber-500">
+                  <span class="font-medium text-slate-700">c) El código de fallas OBD-II.</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="question-block" id="qb-s1_3">
+              <p class="font-semibold text-slate-800 mb-3 text-sm sm:text-base">3. Al investigar diagramas eléctricos y electrónicos del vehículo, ¿cuáles son los dos grandes sistemas de representación gráfica que un mecánico debe saber diferenciar?</p>
+              <div class="grid grid-cols-1 gap-2 pl-2 sm:pl-4">
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-amber-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_3" value="a" required class="mt-0.5 w-4 h-4 text-amber-600 focus:ring-amber-500">
+                  <span class="font-medium text-slate-700">a) El sistema americano (SAE) y el sistema europeo/alemán (DIN).</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-amber-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_3" value="b" class="mt-0.5 w-4 h-4 text-amber-600 focus:ring-amber-500">
+                  <span class="font-medium text-slate-700">b) El sistema analógico y el sistema de carburación.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-amber-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_3" value="c" class="mt-0.5 w-4 h-4 text-amber-600 focus:ring-amber-500">
+                  <span class="font-medium text-slate-700">c) La norma ISO 9001 y la norma de emisiones Euro 6.</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="question-block" id="qb-s1_4">
+              <p class="font-semibold text-slate-800 mb-3 text-sm sm:text-base">4. En el análisis de magnitudes mecánicas, ¿cuál es la ecuación matemática que describe correctamente el Par Motor o Torque ($\tau$)?</p>
+              <div class="grid grid-cols-1 gap-2 pl-2 sm:pl-4">
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-amber-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_4" value="a" required class="mt-0.5 w-4 h-4 text-amber-600 focus:ring-amber-500">
+                  <span class="font-medium text-slate-700">a) $\tau = F \div d$ (Fuerza dividida por distancia).</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-amber-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_4" value="b" class="mt-0.5 w-4 h-4 text-amber-600 focus:ring-amber-500">
+                  <span class="font-medium text-slate-700">b) $\tau = F \cdot d$ (Fuerza tangencial multiplicada por el brazo de palanca o distancia).</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-amber-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_4" value="c" class="mt-0.5 w-4 h-4 text-amber-600 focus:ring-amber-500">
+                  <span class="font-medium text-slate-700">c) $\tau = V_d + V_c$ (Cilindrada sumada al volumen de cámara).</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="question-block" id="qb-s1_5">
+              <p class="font-semibold text-slate-800 mb-3 text-sm sm:text-base">5. ¿Cuál es la justificación técnica principal para utilizar exclusivamente manuales oficiales OEM y registrar formalmente las fuentes de investigación en el taller?</p>
+              <div class="grid grid-cols-1 gap-2 pl-2 sm:pl-4">
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-amber-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_5" value="a" required class="mt-0.5 w-4 h-4 text-amber-600 focus:ring-amber-500">
+                  <span class="font-medium text-slate-700">a) Protege al mecánico de cometer errores de servicio y aplicar calibraciones falsas que puedan destruir componentes de alta precisión del motor o causar accidentes.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-amber-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_5" value="b" class="mt-0.5 w-4 h-4 text-amber-600 focus:ring-amber-500">
+                  <span class="font-medium text-slate-700">b) Acelera la conexión a internet del escáner en la nube.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-amber-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_5" value="c" class="mt-0.5 w-4 h-4 text-amber-600 focus:ring-amber-500">
+                  <span class="font-medium text-slate-700">c) Evita pagar el impuesto de importación de repuestos.</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="mb-10">
+        <div class="flex items-center mb-6">
+          <div class="h-8 w-2 bg-orange-500 rounded-full mr-3"></div>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900">SERIE II: Especificaciones y Mantenimiento <span class="text-orange-600 text-lg sm:text-xl">(5 Puntos)</span></h2>
+        </div>
+        
+        <section class="glass-panel rounded-2xl p-6 mb-6 border-t border-orange-100">
+          <p class="text-xs sm:text-sm font-medium text-orange-900 mb-6 bg-orange-50/70 p-3 rounded-xl border border-orange-100">
+            Instrucciones: Evalúe el manejo de especificaciones de fluidos, inventarios y hojas de cálculo (Guía 2). <strong>(Valor: 5 ítems a 1 pt c/u).</strong>
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-orange-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">1. Al redactar la ficha técnica de un aceite sintético, ¿qué magnitud física evaluada a 40°C y expresada en centistokes define la resistencia a fluir del lubricante?</p>
+              <select name="s2_1" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-orange-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione magnitud...</option>
+                <option value="viscosidad_cinematica">La Viscosidad Cinemática</option>
+                <option value="punto_ebullicion">El Punto de Ebullición</option>
+                <option value="indice_octanaje">El Índice de Octanaje</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-orange-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">2. Según la tabla de intervalos, ¿cuál es la consecuencia técnica de omitir el reemplazo de la faja de distribución o correa de tiempo (Timing Belt) en su intervalo kilométrico sugerido?</p>
+              <select name="s2_2" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-orange-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione consecuencia...</option>
+                <option value="danos_severos">Colisión catastrófica entre válvulas y pistones (en motores de interferencia) y pérdida total de sincronización del motor</option>
+                <option value="perdida_traccion">Únicamente un aumento en el consumo de combustible de los inyectores</option>
+                <option value="sin_problemas">Se desactiva la dirección hidráulica temporalmente</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-orange-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">3. Según el ordenamiento en la nube (Google Drive), ¿en qué subcarpeta debe guardarse estrictamente el archivo de Google Sheets que contiene el inventario de repuestos?</p>
+              <select name="s2_3" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-orange-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione subcarpeta...</option>
+                <option value="03_tablas">03_Tablas_y_Datos</option>
+                <option value="01_docs">01_Documentos</option>
+                <option value="02_pdf">02_Manuales_PDF</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-orange-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">4. Para estructurar correctamente la base de datos de consumibles del afinamiento mayor, ¿cuántas columnas exactas solicitan las instrucciones de la Guía 2?</p>
+              <select name="s2_4" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-orange-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione cantidad...</option>
+                <option value="6_columnas">Exactamente 6 Columnas (N, Descripción, Especificación, Unidad, Precio, Enlace)</option>
+                <option value="4_columnas">Solo 4 Columnas</option>
+                <option value="libre">Formato libre, sin columnas específicas</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-orange-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">5. En el inventario de repuestos, si registramos el dato "Rosca M14x1.25" o "Luz a 1.1 mm" para una bujía, ¿en qué columna debe ir esta información?</p>
+              <select name="s2_5" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-orange-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione columna...</option>
+                <option value="especificacion">Especificación Técnica (Medidas)</option>
+                <option value="descripcion">Descripción del Repuesto</option>
+                <option value="precio">Precio Unitario Estimado</option>
+              </select>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="mb-10">
+        <div class="flex items-center mb-6">
+          <div class="h-8 w-2 bg-yellow-500 rounded-full mr-3"></div>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900">SERIE III: Patentes, Plagio y Derechos <span class="text-yellow-600 text-lg sm:text-xl">(5 Puntos)</span></h2>
+        </div>
+        
+        <section class="glass-panel rounded-2xl p-6 mb-6 border-t border-yellow-100">
+          <p class="text-xs sm:text-sm font-medium text-yellow-900 mb-6 bg-yellow-50/70 p-3 rounded-xl border border-yellow-100">
+            Instrucciones: Evalúe el marco ético y la propiedad intelectual en recursos de diagnóstico automotriz (Guía 3). <strong>(Valor: 5 ítems a 1 pt c/u).</strong>
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-yellow-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">1. Según la Guía 3, ¿cuál es la diferencia legal correcta entre la patente de una pieza automotriz y el derecho de autor?</p>
+              <select name="s3_1" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-yellow-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione diferencia...</option>
+                <option value="patente_vs_autor">La patente protege la invención del componente físico (ej. inyector), y el derecho de autor protege el texto y diagramas del manual técnico</option>
+                <option value="lo_mismo">Ambos términos protegen la misma herramienta mecánica</option>
+                <option value="patente_papel">La patente sirve para evitar fotocopias de un libro y el derecho de autor protege el chasis</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-yellow-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">2. ¿Qué acción técnica constituye "Plagio" o infracción severa de derechos por parte de un técnico mecánico?</p>
+              <select name="s3_2" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-yellow-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione acción...</option>
+                <option value="plagio">Copiar, revender o publicar diagramas de cableado y manuales protegidos por marcas sin autorización en foros públicos</option>
+                <option value="consulta">Consultar un manual técnico oficial para aplicar un procedimiento estandarizado a un cliente</option>
+                <option value="reparacion">Arreglar el motor del vehículo en el garaje de la casa</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-yellow-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">3. En la matriz de licencias, el software especializado de datos técnicos como Alldata o Mitchell1 se clasifica legalmente como:</p>
+              <select name="s3_3" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-yellow-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione licencia...</option>
+                <option value="comercial">Software Propietario con Licencia Comercial (Sujeto a pagos de suscripción)</option>
+                <option value="open_source">Software Open Source / Código Abierto gratuito</option>
+                <option value="dominio_publico">Software de Dominio Público</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-yellow-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">4. ¿Cuál es el riesgo directo para la seguridad física de utilizar diagramas pirateados, alterados o con traducciones erróneas obtenidos de internet?</p>
+              <select name="s3_4" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-yellow-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione riesgo...</option>
+                <option value="torques_erroneos">Aplicar secuencias o torques de culata erróneos que pueden destruir el motor en funcionamiento</option>
+                <option value="bloqueo_scanner">Que el escáner se apague al conectarlo</option>
+                <option value="precio_alto">Que la reparación salga más cara por impuestos en la web</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-yellow-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">5. La "Regla de Oro" establecida para asegurar la integridad de su monografía final en Google Classroom es:</p>
+              <select name="s3_5" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-yellow-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione regla...</option>
+                <option value="exportar_pdf">Exportar el documento de Google Docs con su investigación en un único archivo PDF, sin enlaces a editores externos</option>
+                <option value="enviar_word">Enviar un archivo .docx por correo al profesor</option>
+                <option value="foto_cuaderno">Imprimir el análisis, tomarle foto con el celular y subir la foto</option>
+              </select>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="mb-10">
+        <div class="flex items-center mb-6">
+          <div class="h-8 w-2 bg-slate-700 rounded-full mr-3"></div>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900">SERIE IV: Telemetría y Privacidad OBD-II <span class="text-slate-600 text-lg sm:text-xl">(5 Puntos)</span></h2>
+        </div>
+        
+        <section class="glass-panel rounded-2xl p-6 mb-6 border-t border-slate-200">
+          <p class="text-xs sm:text-sm font-medium text-slate-800 mb-6 bg-slate-100/70 p-3 rounded-xl border border-slate-200">
+            Instrucciones: Evalúe el impacto de la extracción de datos electrónicos del vehículo y el derecho a la reparación (Guía 3). <strong>(Valor: 5 ítems a 1 pt c/u).</strong>
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-slate-400 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">1. En el debate sobre la "Propiedad de la Información de Fallos" abordado en su ensayo, ¿qué dilema central se cuestiona sobre el puerto OBD-II?</p>
+              <select name="s4_1" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-slate-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione dilema...</option>
+                <option value="dueno_dtc">Quién es el dueño legal de los datos y códigos DTC extraídos (el fabricante, el propietario o el taller mecánico)</option>
+                <option value="costo_scanner">Cuál escáner Bluetooth es más económico en el mercado</option>
+                <option value="velocidad_bus">Si el bus CAN transmite a 250kbps o a 500kbps</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-slate-400 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">2. ¿Cuál es el impacto para los talleres independientes si los fabricantes automotrices encriptan la lectura de datos mediante "Security Gateways"?</p>
+              <select name="s4_2" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-slate-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione impacto...</option>
+                <option value="limita_talleres">Limita o bloquea el trabajo de talleres independientes, obligando al usuario a realizar diagnósticos únicamente en agencias autorizadas</option>
+                <option value="mejora_rendimiento">Mejora el rendimiento de la gasolina en los motores de inyección directa</option>
+                <option value="aumenta_voltaje">Aumenta la chispa en las bobinas de encendido</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-slate-400 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">3. El movimiento global que defiende legalmente el acceso equitativo a la información, herramientas y software para reparar cualquier vehículo se conoce como:</p>
+              <select name="s4_3" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-slate-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione movimiento...</option>
+                <option value="right_to_repair">Right to Repair (Derecho a Reparar)</option>
+                <option value="open_source">Open Source Hardware</option>
+                <option value="copyright">Ley de Copyright del Milenio Digital</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-slate-400 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">4. La extracción del historial de velocidad y geolocalización almacenado en la ECU del cliente plantea una vulnerabilidad que afecta directamente a:</p>
+              <select name="s4_4" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-slate-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione derecho...</option>
+                <option value="privacidad">El derecho a la privacidad y la soberanía de los datos personales del conductor</option>
+                <option value="bateria">El tiempo de vida útil de la batería de 12 voltios</option>
+                <option value="frenos">El sistema de frenos antibloqueo (ABS)</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-slate-400 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">5. ¿Por qué es una falta grave a la ética técnica que un mecánico comparta el usuario y contraseña de su software de diagnóstico pagado (licenciado) en foros de internet?</p>
+              <select name="s4_5" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-slate-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione falta...</option>
+                <option value="infringe_eula">Porque infringe el Contrato de Licencia de Usuario Final (EULA), promueve la piratería de software y arriesga bloqueos del escáner</option>
+                <option value="satura_red">Porque satura el ancho de banda del router de la empresa proveedora de software</option>
+                <option value="gasta_tinta">Porque consume la cuota de impresiones del servidor del taller</option>
+              </select>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="bg-amber-50 border-l-4 border-amber-600 p-4 mb-8 rounded-r-2xl shadow-sm no-print">
+        <div class="flex items-start">
+          <div class="flex-shrink-0">
+            <svg class="h-6 w-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+          </div>
+          <div class="ml-3">
+            <h3 class="text-sm font-bold text-amber-900 uppercase tracking-wide">Instrucción de Entrega - Google Classroom</h3>
+            <div class="mt-1 text-xs sm:text-sm text-amber-800 font-medium">
+              <p>Al finalizar la evaluación, haga clic en "Terminar y Calificar". Descargue su comprobante oficial en formato <strong>PDF</strong> y adjúntelo a la tarea en <strong>Google Classroom</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón de Envío -->
+      <div class="flex flex-col justify-center items-center mt-8 no-print">
+        <button type="submit" class="bg-gradient-to-r from-amber-700 via-orange-600 to-amber-700 hover:from-amber-600 hover:to-orange-500 text-white font-black py-4 px-12 rounded-2xl shadow-xl shadow-amber-500/25 transition-all transform hover:-translate-y-1 w-full sm:w-auto text-lg flex items-center justify-center tracking-wide">
+          <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          Terminar y Calificar Evaluación
+        </button>
+      </div>
+    </form>
+
+    <div id="results-panel" class="hidden glass-panel rounded-3xl p-8 shadow-2xl border-t-8 border-amber-500 mt-10 transform transition-all duration-500">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mb-4">Resultados de la Evaluación</h2>
+        <div class="inline-block bg-gradient-to-br from-slate-100 to-slate-200 p-6 rounded-3xl shadow-inner mb-4 border border-slate-200">
+          <span id="final-score" class="text-5xl sm:text-6xl font-black text-amber-600 drop-shadow-sm">0</span>
+          <span class="text-2xl font-bold text-slate-400">/ 20 Pts</span>
+        </div>
+        <p id="feedback-message" class="text-lg sm:text-xl font-bold mt-2"></p>
+      </div>
+      
+      <div class="bg-amber-50 p-4 rounded-xl border border-amber-200 mb-8 text-xs sm:text-sm text-amber-900 font-semibold flex items-center">
+        <svg class="w-5 h-5 mr-2 flex-shrink-0 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+        </svg>
+        Prueba calificada automáticamente. Revise las respuestas correctas resaltadas para retroalimentación personal.
+      </div>
+
+      <div class="text-center no-print bg-slate-50 p-6 rounded-2xl border border-slate-200">
+        <h3 class="font-black text-slate-900 mb-2 uppercase text-base tracking-wider">Generar Comprobante PDF</h3>
+        <p class="mb-5 text-xs sm:text-sm text-slate-600 font-medium">Guarde su comprobante oficial para adjuntarlo a Google Classroom.</p>
+        
+        <button onclick="window.print()" class="bg-slate-900 hover:bg-black text-white font-bold py-3.5 px-8 rounded-xl shadow-lg transition-all w-full sm:w-auto flex items-center justify-center mx-auto text-sm">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+          </svg>
+          Descargar Comprobante Oficial (PDF)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comprobante Oficial para Impresión PDF -->
+  <div id="print-receipt" class="w-full max-w-4xl mx-auto bg-white p-6">
+    <div class="bg-slate-800 py-6 px-6 text-center text-white rounded-t-2xl mb-6 border-b-4 border-amber-500">
+      <h1 class="text-xl font-black mb-1 uppercase tracking-wider">Instituto Industrial Central "Gral. Lázaro Chacón González"</h1>
+      <h2 class="text-sm font-bold uppercase tracking-wide opacity-90">Comprobante Oficial de Evaluación Digital - TIC I (Mecánica Automotriz)</h2>
+    </div>
+
+    <div class="px-6 py-2">
+      <h3 class="text-sm font-black text-slate-900 mb-4 uppercase tracking-wider border-b border-slate-200 pb-2">Datos Académicos del Estudiante</h3>
+      
+      <div class="grid grid-cols-2 gap-4 text-slate-800 text-sm mb-6 border-b border-slate-200 pb-6">
+        <p><span class="font-bold text-slate-600">Nombre Completo:</span> <br><span id="receipt-name" class="uppercase font-extrabold text-slate-900"></span></p>
+        <p><span class="font-bold text-slate-600">Clave / Carné:</span> <br><span id="receipt-id" class="font-extrabold text-slate-900"></span></p>
+        <p><span class="font-bold text-slate-600">Curso:</span> <br>Tecnologías de la Información y Comunicación I (TIC I)</p>
+        <p><span class="font-bold text-slate-600">Grado:</span> <br>4to. Bachillerato en Mecánica Automotriz</p>
+        <p><span class="font-bold text-slate-600">Docente:</span> <br>Prof. Erick Enrique Zamora Paz</p>
+        <p><span class="font-bold text-slate-600">Fecha y Hora de Emisión:</span> <br><span id="receipt-datetime"></span></p>
+      </div>
+
+      <div class="text-center my-8 bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-inner">
+        <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Nota Obtenida</p>
+        <h2 class="text-4xl font-black text-amber-600 tracking-tight"><span id="receipt-score">0</span> / 20 PUNTOS</h2>
+      </div>
+
+      <div class="text-center text-slate-600 text-xs space-y-2 mb-8 max-w-xl mx-auto">
+        <p>Este comprobante certifica la evaluación parcial de la III Unidad (Ciclo Lectivo 2026).</p>
+        <p class="font-bold text-slate-700 mt-4 border border-slate-200 p-3 rounded-xl bg-slate-50 shadow-sm text-[11px]">
+          Sube este comprobante descargado en PDF a la plataforma Google Classroom.
+        </p>
+      </div>
+
+      <div class="border-t border-slate-200 pt-4 mt-6">
+        <p class="font-mono font-bold text-slate-800 text-xs text-center">CÓDIGO DE VALIDACIÓN UNIFICADO: <br><span id="receipt-code" class="text-amber-600 font-extrabold"></span></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Clave de respuestas correctas (20 Puntos Totales - 4 Series de 5 Pts)
+    const correctAnswers = {
+      // SERIE I (5 Pts)
+      s1_1: { answer: 'b', points: 1 },
+      s1_2: { answer: 'a', points: 1 },
+      s1_3: { answer: 'a', points: 1 },
+      s1_4: { answer: 'b', points: 1 },
+      s1_5: { answer: 'a', points: 1 },
+
+      // SERIE II (5 Pts)
+      s2_1: { answer: 'viscosidad_cinematica', points: 1 },
+      s2_2: { answer: 'danos_severos', points: 1 },
+      s2_3: { answer: '03_tablas', points: 1 },
+      s2_4: { answer: '6_columnas', points: 1 },
+      s2_5: { answer: 'especificacion', points: 1 },
+
+      // SERIE III (5 Pts)
+      s3_1: { answer: 'patente_vs_autor', points: 1 },
+      s3_2: { answer: 'plagio', points: 1 },
+      s3_3: { answer: 'comercial', points: 1 },
+      s3_4: { answer: 'torques_erroneos', points: 1 },
+      s3_5: { answer: 'exportar_pdf', points: 1 },
+
+      // SERIE IV (5 Pts)
+      s4_1: { answer: 'dueno_dtc', points: 1 },
+      s4_2: { answer: 'limita_talleres', points: 1 },
+      s4_3: { answer: 'right_to_repair', points: 1 },
+      s4_4: { answer: 'privacidad', points: 1 },
+      s4_5: { answer: 'infringe_eula', points: 1 }
+    };
+
+    // Event listener principal de calificación
+    document.getElementById('evaluation-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      let totalScore = 0;
+      const formData = new FormData(this);
+      
+      // Bloquear el formulario contra modificaciones
+      this.classList.add('disabled-element');
+      const submitBtn = this.querySelector('button[type="submit"]');
+      if(submitBtn) submitBtn.style.display = 'none';
+
+      // 1. Evaluar Radio buttons (Serie I)
+      ['s1_1', 's1_2', 's1_3', 's1_4', 's1_5'].forEach(name => {
+        const userVal = formData.get(name);
+        const block = document.getElementById('qb-' + name);
+        if(block) {
+          const labels = block.querySelectorAll('label');
+          labels.forEach(label => {
+            const input = label.querySelector('input');
+            if(input.value === correctAnswers[name].answer) {
+              label.classList.add('correct-answer');
+            }
+            if(input.checked && input.value !== correctAnswers[name].answer) {
+              label.classList.add('incorrect-answer');
+            }
+          });
+        }
+
+        if(userVal === correctAnswers[name].answer) {
+          totalScore += correctAnswers[name].points;
+        }
+      });
+
+      // 2. Evaluar Selects (Series II, III, IV)
+      const selects = this.querySelectorAll('select');
+      selects.forEach(select => {
+        const name = select.name;
+        if(correctAnswers[name]) {
+          if(select.value === correctAnswers[name].answer) {
+            totalScore += correctAnswers[name].points;
+            select.classList.add('correct-answer', 'font-bold');
+          } else {
+            select.classList.add('incorrect-answer', 'font-bold');
+            const options = select.options;
+            for(let i = 0; i < options.length; i++) {
+              if(options[i].value === correctAnswers[name].answer) {
+                options[i].text = "✓ " + options[i].text;
+              }
+            }
+          }
+        }
+      });
+
+      totalScore = Math.round(totalScore * 10) / 10;
+
+      // Mostrar Panel de Resultados
+      const resultsPanel = document.getElementById('results-panel');
+      const finalScoreEl = document.getElementById('final-score');
+      const feedbackEl = document.getElementById('feedback-message');
+      
+      resultsPanel.classList.remove('hidden');
+      finalScoreEl.textContent = totalScore;
+
+      // Llenar comprobante oficial
+      const studentName = document.getElementById('student-name').value || "Estudiante no identificado";
+      const studentId = document.getElementById('student-id').value || "0";
+      
+      document.getElementById('receipt-name').textContent = studentName;
+      document.getElementById('receipt-id').textContent = studentId;
+      document.getElementById('receipt-score').textContent = totalScore;
+      
+      const now = new Date();
+      document.getElementById('receipt-datetime').textContent = now.toLocaleString('es-GT');
+      
+      // Código de validación único
+      const nameSub = studentName.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, 'X');
+      const timeStr = now.getTime().toString().slice(-6);
+      document.getElementById('receipt-code').textContent = `TICI-MEC-U3-${nameSub}${studentId}-${timeStr}-${totalScore}PTS`;
+      
+      // Retroalimentación según nota temática mecánica
+      if(totalScore >= 18) {
+        feedbackEl.textContent = "¡Excelente diagnóstico técnico! Demuestras un gran dominio sobre el derecho a reparar, patentes y tolerancias mecánicas. ¡Estás listo para el taller!";
+        feedbackEl.className = "text-lg sm:text-xl font-black text-emerald-600";
+      } else if(totalScore >= 14) {
+        feedbackEl.textContent = "Buen trabajo. Has aprobado la evaluación parcial, pero se recomienda repasar los manuales OEM y la protección de telemetría OBD-II para evitar fallos futuros.";
+        feedbackEl.className = "text-lg sm:text-xl font-black text-amber-600";
+      } else {
+        feedbackEl.textContent = "Precaución: Se requiere un ajuste mayor. Repasa urgentemente las guías de intervalos de mantenimiento, el EULA del escáner y la ética de diagnóstico automotriz.";
+        feedbackEl.className = "text-lg sm:text-xl font-black text-rose-600";
+      }
+
+      setTimeout(() => {
+        resultsPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 250);
+    });
+  </script>
+</body>
+</html>

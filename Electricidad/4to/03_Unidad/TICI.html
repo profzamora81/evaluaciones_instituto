@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primer Examen Parcial TIC I - 4to. Bachillerato en Electricidad</title>
+  <link rel="icon" type="image/jpeg" href="../../public/Logo.jpeg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600" rel="stylesheet">
+  
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    code, pre { font-family: 'Fira Code', monospace; }
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+    }
+    .correct-answer { background-color: #dcfce7 !important; border-color: #22c55e !important; color: #166534 !important; }
+    .incorrect-answer { background-color: #fee2e2 !important; border-color: #ef4444 !important; color: #991b1b !important; }
+    .disabled-element { pointer-events: none; opacity: 0.88; }
+    
+    @media print {
+      @page { margin: 1.5cm; }
+      .no-print { display: none !important; }
+      body { 
+        background-color: white !important; 
+        background-image: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .glass-panel { box-shadow: none; border: 1px solid #e2e8f0; }
+      .main-evaluation-content { display: none !important; }
+      #print-receipt { display: block !important; }
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    }
+    #print-receipt { display: none; }
+  </style>
+</head>
+<body class="text-slate-800 antialiased py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-100 via-blue-50/40 to-cyan-50 min-h-screen">
+
+  <div class="max-w-4xl mx-auto main-evaluation-content">
+    <!-- Encabezado Institucional -->
+    <header class="glass-panel rounded-3xl p-6 sm:p-8 mb-8 text-center border-t-8 border-blue-600 relative overflow-hidden">
+      <div class="absolute top-0 right-0 -mt-4 -mr-4 w-28 h-28 bg-gradient-to-br from-blue-400 to-cyan-600 rounded-full opacity-15 blur-2xl"></div>
+      <div class="absolute bottom-0 left-0 -mb-4 -ml-4 w-28 h-28 bg-gradient-to-tr from-sky-400 to-blue-500 rounded-full opacity-15 blur-2xl"></div>
+      
+      <div class="relative z-10">
+        <!-- Logotipo proporcionado -->
+        <div class="inline-flex items-center justify-center mb-3 p-2 bg-white rounded-2xl shadow-sm border border-slate-200">
+          <div class="inline-flex items-center justify-center mb-3 p-2 bg-white rounded-2xl shadow-sm border border-slate-200">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 bg-rose-600 rounded-xl flex items-center justify-center text-white font-black text-2xl tracking-wider shadow-inner">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-teal-600 rounded-xl flex items-center justify-center text-white font-black text-2xl tracking-wider shadow-inner">
+                <img src="../../public/Logo.jpeg" alt="Logo Instituto Lázaro Chacón González" class="w-24 h-24 sm:w-28 sm:h-28 object-contain rounded-xl">
+            </div>
+          </div>
+        </div>
+        </div>
+        
+        <h1 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight uppercase">Instituto Industrial Central "General Lázaro Chacón González"</h1>
+        <p class="text-xs sm:text-sm font-semibold text-slate-500 mt-1">Bachillerato en Ciencias y Letras con Orientación en Electricidad</p>
+        <h2 class="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-sky-600 to-cyan-700 mt-2">Primer Examen Parcial de TIC I</h2>
+        <p class="text-xs font-bold text-blue-600 tracking-widest uppercase mt-1">III Unidad - Ciclo Lectivo 2026</p>
+        
+        <div class="mt-4 flex flex-wrap justify-center gap-2 text-xs sm:text-sm font-medium">
+          <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full border border-slate-200"><strong>Curso:</strong> Tecnologías de la Información y Comunicación I</span>
+          <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full border border-slate-200"><strong>Grado:</strong> 4to. Bachillerato Electricidad</span>
+          <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full border border-blue-200 font-bold"><strong>Valor Total:</strong> 20 Puntos</span>
+        </div>
+        <p class="text-slate-500 mt-3 text-xs sm:text-sm"><strong>Docente:</strong> Prof. Erick Enrique Zamora Paz</p>
+      </div>
+    </header>
+
+    <!-- Advertencia de Integridad -->
+    <div class="bg-amber-50 border-l-4 border-amber-500 p-4 mb-8 rounded-r-2xl shadow-sm no-print">
+      <div class="flex items-start">
+        <div class="flex-shrink-0">
+          <svg class="h-6 w-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+          </svg>
+        </div>
+        <div class="ml-3">
+          <h3 class="text-sm font-bold text-amber-800 uppercase tracking-wide">Instrucciones Generales</h3>
+          <div class="mt-1 text-xs sm:text-sm text-amber-700 font-medium">
+            <p>La presente evaluación parcial consta de <strong>4 Series evaluativas (5 Puntos cada una = 20 Pts Totales)</strong> basadas en las Guías 1, 2 y 3. Lea con atención cada enunciado antes de seleccionar su respuesta. La resolución es estrictamente individual.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form id="evaluation-form">
+      <!-- Datos del Estudiante -->
+      <section class="glass-panel rounded-2xl p-6 mb-8 border-l-4 border-blue-500 hover:shadow-md transition-shadow">
+        <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center">
+          <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+          </svg>
+          Datos del Alumno
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Nombre Completo</label>
+            <input type="text" id="student-name" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-sm font-medium" placeholder="Apellidos, Nombres">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Clave / Carné</label>
+            <input type="number" id="student-id" required min="1" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-sm font-medium" placeholder="Ej. 15">
+          </div>
+        </div>
+      </section>
+
+      <!-- SERIE I: BÚSQUEDA AVANZADA Y CONCEPTOS ELÉCTRICOS -->
+      <div class="mb-10">
+        <div class="flex items-center mb-6">
+          <div class="h-8 w-2 bg-blue-600 rounded-full mr-3"></div>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900">SERIE I: Búsqueda Avanzada y Conceptos Eléctricos <span class="text-blue-600 text-lg sm:text-xl">(5 Puntos)</span></h2>
+        </div>
+        
+        <section class="glass-panel rounded-2xl p-6 mb-6 border-t border-blue-100">
+          <p class="text-xs sm:text-sm font-medium text-blue-900 mb-6 bg-blue-50/70 p-3 rounded-xl border border-blue-100">
+            Instrucciones: Analice las técnicas de investigación en navegadores, leyes eléctricas y normativas de seguridad (Guía 1). Seleccione la opción correcta para cada ítem. <strong>(Valor: 5 ítems a 1 pt c/u).</strong>
+          </p>
+
+          <div class="space-y-6">
+            <div class="question-block" id="qb-s1_1">
+              <p class="font-semibold text-slate-800 mb-3 text-sm sm:text-base">1. ¿Qué comando u operador de búsqueda avanzada en el navegador permite restringir los resultados a manuales o documentos técnicos exclusivamente en formato PDF?</p>
+              <div class="grid grid-cols-1 gap-2 pl-2 sm:pl-4">
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-blue-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_1" value="a" required class="mt-0.5 w-4 h-4 text-blue-600 focus:ring-blue-500">
+                  <span class="font-medium text-slate-700">a) `format:pdf`</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-blue-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_1" value="b" class="mt-0.5 w-4 h-4 text-blue-600 focus:ring-blue-500">
+                  <span class="font-medium text-slate-700">b) `filetype:pdf`</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-blue-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_1" value="c" class="mt-0.5 w-4 h-4 text-blue-600 focus:ring-blue-500">
+                  <span class="font-medium text-slate-700">c) `doc:pdf`</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="question-block" id="qb-s1_2">
+              <p class="font-semibold text-slate-800 mb-3 text-sm sm:text-base">2. Al investigar las normativas de seguridad eléctrica, la norma internacional NFPA 70E trata específicamente sobre:</p>
+              <div class="grid grid-cols-1 gap-2 pl-2 sm:pl-4">
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-blue-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_2" value="a" required class="mt-0.5 w-4 h-4 text-blue-600 focus:ring-blue-500">
+                  <span class="font-medium text-slate-700">a) La prevención del arco eléctrico (arc flash) y el uso correcto del equipo de protección personal (EPP).</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-blue-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_2" value="b" class="mt-0.5 w-4 h-4 text-blue-600 focus:ring-blue-500">
+                  <span class="font-medium text-slate-700">b) Los estándares para el diseño arquitectónico de centrales nucleares.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-blue-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_2" value="c" class="mt-0.5 w-4 h-4 text-blue-600 focus:ring-blue-500">
+                  <span class="font-medium text-slate-700">c) Las reglas para codificar software en diagramas de flujo.</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="question-block" id="qb-s1_3">
+              <p class="font-semibold text-slate-800 mb-3 text-sm sm:text-base">3. En el análisis de magnitudes eléctricas para circuitos de corriente continua, ¿cuál es la expresión matemática correcta de la Ley de Ohm para calcular el voltaje (tensión)?</p>
+              <div class="grid grid-cols-1 gap-2 pl-2 sm:pl-4">
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-blue-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_3" value="a" required class="mt-0.5 w-4 h-4 text-blue-600 focus:ring-blue-500">
+                  <span class="font-medium text-slate-700">a) V = P / I (Voltaje es igual a Potencia dividida por Corriente)</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-blue-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_3" value="b" class="mt-0.5 w-4 h-4 text-blue-600 focus:ring-blue-500">
+                  <span class="font-medium text-slate-700">b) V = I × R (Voltaje es igual a Corriente multiplicada por Resistencia)</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-blue-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_3" value="c" class="mt-0.5 w-4 h-4 text-blue-600 focus:ring-blue-500">
+                  <span class="font-medium text-slate-700">c) V = I / R (Voltaje es igual a Corriente dividida por Resistencia)</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="question-block" id="qb-s1_4">
+              <p class="font-semibold text-slate-800 mb-3 text-sm sm:text-base">4. En cuanto a la simbología eléctrica normalizada para planos, ¿qué diferencia técnica existe entre la norma ANSI/NEMA y la norma IEC?</p>
+              <div class="grid grid-cols-1 gap-2 pl-2 sm:pl-4">
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-blue-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_4" value="a" required class="mt-0.5 w-4 h-4 text-blue-600 focus:ring-blue-500">
+                  <span class="font-medium text-slate-700">a) ANSI/NEMA es la norma americana de representación gráfica, mientras que IEC rige el estándar europeo e internacional.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-blue-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_4" value="b" class="mt-0.5 w-4 h-4 text-blue-600 focus:ring-blue-500">
+                  <span class="font-medium text-slate-700">b) No hay ninguna diferencia gráfica, ambas utilizan exactamente los mismos símbolos para todos los dispositivos.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-blue-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_4" value="c" class="mt-0.5 w-4 h-4 text-blue-600 focus:ring-blue-500">
+                  <span class="font-medium text-slate-700">c) La norma IEC aplica exclusivamente a sistemas hidráulicos y ANSI a redes informáticas.</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="question-block" id="qb-s1_5">
+              <p class="font-semibold text-slate-800 mb-3 text-sm sm:text-base">5. ¿Por qué es indispensable que un técnico electricista genere un registro bibliográfico formal al basar sus diseños en manuales de fabricantes de la web?</p>
+              <div class="grid grid-cols-1 gap-2 pl-2 sm:pl-4">
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-blue-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_5" value="a" required class="mt-0.5 w-4 h-4 text-blue-600 focus:ring-blue-500">
+                  <span class="font-medium text-slate-700">a) Valida legalmente la fuente técnica y protege al diseñador de errores físicos por asumir parámetros no avalados por el fabricante.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-blue-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_5" value="b" class="mt-0.5 w-4 h-4 text-blue-600 focus:ring-blue-500">
+                  <span class="font-medium text-slate-700">b) Es una regla exclusiva de formato para comprimir el archivo PDF a menor peso en el correo electrónico.</span>
+                </label>
+                <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-blue-50/50 transition-colors border border-slate-200 text-sm">
+                  <input type="radio" name="s1_5" value="c" class="mt-0.5 w-4 h-4 text-blue-600 focus:ring-blue-500">
+                  <span class="font-medium text-slate-700">c) Únicamente para evitar ser expulsado del sistema de Google Drive por infracción de almacenamiento.</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- SERIE II: NORMATIVAS, CONDUCTORES Y BASES DE DATOS -->
+      <div class="mb-10">
+        <div class="flex items-center mb-6">
+          <div class="h-8 w-2 bg-cyan-600 rounded-full mr-3"></div>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900">SERIE II: Normativas, Conductores y Bases de Datos <span class="text-cyan-600 text-lg sm:text-xl">(5 Puntos)</span></h2>
+        </div>
+        
+        <section class="glass-panel rounded-2xl p-6 mb-6 border-t border-cyan-100">
+          <p class="text-xs sm:text-sm font-medium text-cyan-900 mb-6 bg-cyan-50/70 p-3 rounded-xl border border-cyan-100">
+            Instrucciones: Evalúe el manejo de hojas de cálculo, calibres AWG y organización en la nube (Guía 2). <strong>(Valor: 5 ítems a 1 pt c/u).</strong>
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-cyan-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">1. Según la metodología de ordenamiento en la nube de la Guía 2, ¿en qué subcarpeta de su Google Drive deben guardarse las hojas de cálculo del inventario eléctrico?</p>
+              <select name="s2_1" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-cyan-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione carpeta...</option>
+                <option value="03_tablas">03_Tablas_y_Datos</option>
+                <option value="01_documentos">01_Documentos</option>
+                <option value="04_planos">04_Planos_CAD</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-cyan-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">2. En la tabla de conductores de la American Wire Gauge (AWG), ¿qué significa la magnitud técnica "Ampacidad"?</p>
+              <select name="s2_2" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-cyan-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione definición...</option>
+                <option value="aislamiento">El grosor plástico del material aislante del cable</option>
+                <option value="corriente_maxima">La corriente máxima admisible (en amperios) que el conductor puede transportar con seguridad sin sobrecalentarse</option>
+                <option value="voltaje_caida">La caída de tensión proyectada en largas distancias</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-cyan-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">3. Al especificar un conductor para instalaciones residenciales expuestas a altas temperaturas y humedad, ¿qué tipo de aislamiento es comúnmente sugerido en el reporte?</p>
+              <select name="s2_3" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-cyan-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione aislamiento...</option>
+                <option value="thhn">Aislamiento THHN / THWN</option>
+                <option value="pvc_tubo">Tubo PVC rígido comercial</option>
+                <option value="cinta_aislar">Cinta de aislar de vinilo negro</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-cyan-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">4. Para estructurar correctamente la base de datos de materiales eléctricos en Google Sheets, ¿cuántas columnas técnicas exactas se solicitaron en las instrucciones (N., Descripción, Especificación, Unidad, Precio, URL)?</p>
+              <select name="s2_4" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-cyan-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione cantidad...</option>
+                <option value="6_columnas">Exactamente 6 columnas estructuradas</option>
+                <option value="4_columnas">Únicamente 4 columnas</option>
+                <option value="ilimitadas">No hay límite, depende del instalador</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-cyan-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">5. De acuerdo a su catálogo técnico, el símbolo eléctrico de "Puesta a tierra" en un esquema de baja tensión cumple la función principal de:</p>
+              <select name="s2_5" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-cyan-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione función...</option>
+                <option value="iluminacion">Proporcionar energía a los puntos de iluminación de la casa</option>
+                <option value="proteccion_falla">Proteger al usuario y equipos desviando las corrientes de falla y sobretensiones hacia el terreno físico</option>
+                <option value="medir_voltaje">Medir el consumo mensual en el contador del proveedor eléctrico</option>
+              </select>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- SERIE III: DERECHOS DE AUTOR EN DISEÑO ELÉCTRICO -->
+      <div class="mb-10">
+        <div class="flex items-center mb-6">
+          <div class="h-8 w-2 bg-sky-600 rounded-full mr-3"></div>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900">SERIE III: Derechos de Autor y Esquemas CAD <span class="text-sky-600 text-lg sm:text-xl">(5 Puntos)</span></h2>
+        </div>
+        
+        <section class="glass-panel rounded-2xl p-6 mb-6 border-t border-sky-100">
+          <p class="text-xs sm:text-sm font-medium text-sky-900 mb-6 bg-sky-50/70 p-3 rounded-xl border border-sky-100">
+            Instrucciones: Evalúe el marco ético y licenciamiento de software aplicado a la ingeniería y dibujo eléctrico (Guía 3). <strong>(Valor: 5 ítems a 1 pt c/u).</strong>
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-sky-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">1. Según la investigación de propiedad intelectual en planos, ¿cuál es la diferencia legal entre el derecho de autor de un plano y una patente?</p>
+              <select name="s3_1" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione diferencia...</option>
+                <option value="autor_vs_patente">El derecho de autor protege el plano o diagrama como obra gráfica, mientras que la patente protege la invención funcional del dispositivo físico</option>
+                <option value="son_lo_mismo">Ambos términos jurídicos protegen exactamente lo mismo en electricidad</option>
+                <option value="patente_papel">La patente solo protege el papel en el que se imprime el plano municipal</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-sky-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">2. Si un instalador comete el plagio de copiar de forma directa el plano de cargas de otra residencia (sin adaptarlo al nuevo proyecto), ¿qué consecuencia técnica y física se arriesga a provocar?</p>
+              <select name="s3_2" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione consecuencia...</option>
+                <option value="peligro_incendio">Grave peligro de cortocircuitos o incendios por utilizar disyuntores y calibres calculados para otra demanda eléctrica distinta</option>
+                <option value="mayor_eficiencia">El sistema será más eficiente energéticamente y ahorrará corriente</option>
+                <option value="sin_riesgo">Ningún peligro físico, ya que todas las casas consumen exactamente la misma energía</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-sky-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">3. En la matriz de licencias, si descarga un bloque de diseño eléctrico (símbolo) desde internet bajo una licencia Creative Commons de Atribución (CC-BY), esto le permite:</p>
+              <select name="s3_3" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione permiso...</option>
+                <option value="usar_atribucion">Usar libremente, modificar e integrar el bloque en sus planos comerciales, siempre y cuando se otorgue crédito al diseñador original</option>
+                <option value="prohibido_usar">Está prohibido usarlo en proyectos reales, es solo para visualización</option>
+                <option value="apropiacion">Registrar el simbolo legalmente como si fuera creación intelectual suya</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-sky-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">4. Si se encuentra un esquema eléctrico antiguo cuyo plazo de protección legal de autor ya ha expirado según las leyes, este plano técnico pasa a ser considerado:</p>
+              <select name="s3_4" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione clasificación...</option>
+                <option value="dominio_publico">Una obra de Dominio Público (Public Domain) de uso libre</option>
+                <option value="copyright">Propiedad del colegio de ingenieros locales</option>
+                <option value="secreto_industrial">Secreto Industrial Restringido</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-sky-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">5. En la matriz comparativa de recursos CAD, ¿qué restricciones aplica por defecto el "Copyright Tradicional" sobre las memorias de cálculo de un tercero?</p>
+              <select name="s3_5" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione restricción...</option>
+                <option value="todos_derechos">Mantiene "Todos los derechos reservados", prohibiendo su copia, modificación y distribución sin el permiso explícito del autor</option>
+                <option value="copia_libre">Permite la copia y venta libre en el mercado eléctrico informal</option>
+                <option value="solo_modificar">Permite modificarlas, pero no leerlas directamente en la obra</option>
+              </select>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- SERIE IV: RESPONSABILIDAD CIVIL Y ÉTICA PROFESIONAL -->
+      <div class="mb-10">
+        <div class="flex items-center mb-6">
+          <div class="h-8 w-2 bg-indigo-600 rounded-full mr-3"></div>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900">SERIE IV: Responsabilidad Civil y Ética Profesional <span class="text-indigo-600 text-lg sm:text-xl">(5 Puntos)</span></h2>
+        </div>
+        
+        <section class="glass-panel rounded-2xl p-6 mb-6 border-t border-indigo-100">
+          <p class="text-xs sm:text-sm font-medium text-indigo-900 mb-6 bg-indigo-50/70 p-3 rounded-xl border border-indigo-100">
+            Instrucciones: Evalúe el impacto del compromiso ético y la responsabilidad civil del instalador eléctrico según la Guía 3. <strong>(Valor: 5 ítems a 1 pt c/u).</strong>
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-indigo-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">1. Según el análisis de ética, ¿cuál es el peligro principal de que un técnico o ingeniero firme/valide esquemas unifilares y planos de distribución sin haber supervisado físicamente la obra?</p>
+              <select name="s4_1" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione peligro...</option>
+                <option value="responsabilidad_civil">Asumir toda la responsabilidad civil y penal en caso de fallas, sobrecargas o siniestros eléctricos en la edificación por diseños ajenos defectuosos</option>
+                <option value="gasto_tinta">Gastar tinta y papel en el sello municipal innecesariamente</option>
+                <option value="tramite_lento">Hacer que el trámite de la empresa eléctrica sea más tardado</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-indigo-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">2. Si durante la instalación física usted descubre que la tubería conduit interfiere con una columna de agua, ¿es éticamente correcto alterar la trayectoria o calibre del cable sin notificar al diseñador original del plano?</p>
+              <select name="s4_2" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione respuesta...</option>
+                <option value="no_notificar">No, porque modificar las longitudes o el cableado arbitrariamente altera los cálculos de caída de tensión originales y vulnera la seguridad proyectada</option>
+                <option value="si_notificar">Sí, el instalador manda sobre el papel y no necesita consultar cálculos</option>
+                <option value="depende_costo">Solo si el tubo de agua es de plástico PVC</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-indigo-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">3. A diferencia del plagio directo, ¿cómo se considera el acto de utilizar un esquema eléctrico estandarizado encontrado en internet "exclusivamente como una guía técnica de estudio o referencia conceptual"?</p>
+              <select name="s4_3" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione consideración...</option>
+                <option value="practica_valida">Una práctica válida y ética para la investigación técnica y fundamentación del diseño propio</option>
+                <option value="delito_federal">Un delito informático penado internacionalmente en todos los casos</option>
+                <option value="pirateria">Piratería industrial de grado menor</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-indigo-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">4. Si un electricista toma una memoria de cálculo elaborada por otro ingeniero, le borra el nombre del autor y la presenta para cobrarla en un proyecto comercial, comete:</p>
+              <select name="s4_4" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione falta...</option>
+                <option value="plagio_tecnico">Plagio técnico severo y violación directa de los derechos patrimoniales y morales del autor</option>
+                <option value="optimizacion">Optimización de recursos y trabajo inteligente colaborativo</option>
+                <option value="inspiracion">Inspiración técnica basada en la norma ANSI</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-indigo-300 transition-colors gap-3">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 sm:w-2/3">5. Para la validación final de su monografía técnica según la Regla de Oro descrita en la Guía 3, ¿qué protocolo estricto debe cumplirse para la entrega en Classroom?</p>
+              <select name="s4_5" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 text-xs sm:text-sm font-semibold outline-none">
+                <option value="" disabled selected>Seleccione regla...</option>
+                <option value="solo_pdf">Entregar un único archivo consolidado en formato PDF que integre capturas e investigación, con cero enlaces editables externos</option>
+                <option value="enviar_word">Subir un archivo nativo de Microsoft Word desordenado sin portada</option>
+                <option value="link_canva">Mandar un correo electrónico al profesor con fotos sueltas del cuaderno</option>
+              </select>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Advertencia Classroom -->
+      <div class="bg-blue-50 border-l-4 border-blue-600 p-4 mb-8 rounded-r-2xl shadow-sm no-print">
+        <div class="flex items-start">
+          <div class="flex-shrink-0">
+            <svg class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+          </div>
+          <div class="ml-3">
+            <h3 class="text-sm font-bold text-blue-900 uppercase tracking-wide">Instrucción de Entrega - Google Classroom</h3>
+            <div class="mt-1 text-xs sm:text-sm text-blue-800 font-medium">
+              <p>Al finalizar la evaluación, haga clic en "Terminar y Calificar". Descargue su comprobante oficial en formato <strong>PDF</strong> y adjúntelo a la tarea en <strong>Google Classroom</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón de Envío -->
+      <div class="flex flex-col justify-center items-center mt-8 no-print">
+        <button type="submit" class="bg-gradient-to-r from-blue-700 via-sky-600 to-cyan-700 hover:from-blue-600 hover:to-cyan-600 text-white font-black py-4 px-12 rounded-2xl shadow-xl shadow-blue-500/25 transition-all transform hover:-translate-y-1 w-full sm:w-auto text-lg flex items-center justify-center tracking-wide">
+          <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          Terminar y Calificar Evaluación
+        </button>
+      </div>
+    </form>
+
+    <!-- Resultados (Oculto inicialmente) -->
+    <div id="results-panel" class="hidden glass-panel rounded-3xl p-8 shadow-2xl border-t-8 border-blue-500 mt-10 transform transition-all duration-500">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mb-4">Resultados de la Evaluación</h2>
+        <div class="inline-block bg-gradient-to-br from-slate-100 to-slate-200 p-6 rounded-3xl shadow-inner mb-4 border border-slate-200">
+          <span id="final-score" class="text-5xl sm:text-6xl font-black text-blue-600 drop-shadow-sm">0</span>
+          <span class="text-2xl font-bold text-slate-400">/ 20 Pts</span>
+        </div>
+        <p id="feedback-message" class="text-lg sm:text-xl font-bold mt-2"></p>
+      </div>
+      
+      <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 mb-8 text-xs sm:text-sm text-blue-900 font-semibold flex items-center">
+        <svg class="w-5 h-5 mr-2 flex-shrink-0 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+        </svg>
+        Prueba calificada automáticamente. Revise las respuestas correctas resaltadas en verde para retroalimentación personal.
+      </div>
+
+      <div class="text-center no-print bg-slate-50 p-6 rounded-2xl border border-slate-200">
+        <h3 class="font-black text-slate-900 mb-2 uppercase text-base tracking-wider">Generar Comprobante PDF</h3>
+        <p class="mb-5 text-xs sm:text-sm text-slate-600 font-medium">Guarde su comprobante oficial para adjuntarlo a Google Classroom.</p>
+        
+        <button onclick="window.print()" class="bg-slate-900 hover:bg-black text-white font-bold py-3.5 px-8 rounded-xl shadow-lg transition-all w-full sm:w-auto flex items-center justify-center mx-auto text-sm">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+          </svg>
+          Descargar Comprobante Oficial (PDF)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comprobante Oficial para Impresión PDF -->
+  <div id="print-receipt" class="w-full max-w-4xl mx-auto bg-white p-6">
+    <div class="bg-blue-700 py-6 px-6 text-center text-white rounded-t-2xl mb-6">
+      <h1 class="text-xl font-black mb-1 uppercase tracking-wider">Instituto Industrial Central "Gral. Lázaro Chacón González"</h1>
+      <h2 class="text-sm font-bold uppercase tracking-wide opacity-90">Comprobante Oficial de Evaluación Digital - TIC I (Electricidad)</h2>
+    </div>
+
+    <div class="px-6 py-2">
+      <h3 class="text-sm font-black text-slate-900 mb-4 uppercase tracking-wider border-b border-slate-200 pb-2">Datos Académicos del Alumno</h3>
+      
+      <div class="grid grid-cols-2 gap-4 text-slate-800 text-sm mb-6 border-b border-slate-200 pb-6">
+        <p><span class="font-bold text-slate-600">Nombre Completo:</span> <br><span id="receipt-name" class="uppercase font-extrabold text-slate-900"></span></p>
+        <p><span class="font-bold text-slate-600">Clave / Carné:</span> <br><span id="receipt-id" class="font-extrabold text-slate-900"></span></p>
+        <p><span class="font-bold text-slate-600">Curso:</span> <br>Tecnologías de la Información y Comunicación I (TIC I)</p>
+        <p><span class="font-bold text-slate-600">Grado:</span> <br>4to. Bachillerato en Electricidad</p>
+        <p><span class="font-bold text-slate-600">Docente:</span> <br>Prof. Erick Enrique Zamora Paz</p>
+        <p><span class="font-bold text-slate-600">Fecha y Hora de Emisión:</span> <br><span id="receipt-datetime"></span></p>
+      </div>
+
+      <div class="text-center my-8 bg-slate-50 p-6 rounded-2xl border border-slate-200">
+        <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Calificación Obtenida</p>
+        <h2 class="text-4xl font-black text-blue-700 tracking-tight"><span id="receipt-score">0</span> / 20 PUNTOS</h2>
+      </div>
+
+      <div class="text-center text-slate-600 text-xs space-y-2 mb-8 max-w-xl mx-auto">
+        <p>Este comprobante certifica la evaluación parcial de la III Unidad (Ciclo Lectivo 2026).</p>
+        <p class="font-bold text-slate-700 mt-4 border border-slate-200 p-3 rounded-xl bg-slate-50 shadow-sm text-[11px]">
+          Sube este comprobante descargado en PDF a la plataforma Google Classroom.
+        </p>
+      </div>
+
+      <div class="border-t border-slate-200 pt-4 mt-6">
+        <p class="font-mono font-bold text-slate-800 text-xs text-center">CÓDIGO DE VALIDACIÓN UNIFICADO: <br><span id="receipt-code" class="text-blue-600 font-extrabold"></span></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Clave de respuestas correctas (20 Puntos Totales - 4 Series de 5 Pts)
+    const correctAnswers = {
+      // SERIE I (5 Pts)
+      s1_1: { answer: 'b', points: 1 },
+      s1_2: { answer: 'a', points: 1 },
+      s1_3: { answer: 'b', points: 1 },
+      s1_4: { answer: 'a', points: 1 },
+      s1_5: { answer: 'a', points: 1 },
+
+      // SERIE II (5 Pts)
+      s2_1: { answer: '03_tablas', points: 1 },
+      s2_2: { answer: 'corriente_maxima', points: 1 },
+      s2_3: { answer: 'thhn', points: 1 },
+      s2_4: { answer: '6_columnas', points: 1 },
+      s2_5: { answer: 'proteccion_falla', points: 1 },
+
+      // SERIE III (5 Pts)
+      s3_1: { answer: 'autor_vs_patente', points: 1 },
+      s3_2: { answer: 'peligro_incendio', points: 1 },
+      s3_3: { answer: 'usar_atribucion', points: 1 },
+      s3_4: { answer: 'dominio_publico', points: 1 },
+      s3_5: { answer: 'todos_derechos', points: 1 },
+
+      // SERIE IV (5 Pts)
+      s4_1: { answer: 'responsabilidad_civil', points: 1 },
+      s4_2: { answer: 'no_notificar', points: 1 },
+      s4_3: { answer: 'practica_valida', points: 1 },
+      s4_4: { answer: 'plagio_tecnico', points: 1 },
+      s4_5: { answer: 'solo_pdf', points: 1 }
+    };
+
+    // Event listener principal de calificación
+    document.getElementById('evaluation-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      let totalScore = 0;
+      const formData = new FormData(this);
+      
+      // Bloquear el formulario contra modificaciones
+      this.classList.add('disabled-element');
+      const submitBtn = this.querySelector('button[type="submit"]');
+      if(submitBtn) submitBtn.style.display = 'none';
+
+      // 1. Evaluar Radio buttons (Serie I)
+      ['s1_1', 's1_2', 's1_3', 's1_4', 's1_5'].forEach(name => {
+        const userVal = formData.get(name);
+        const block = document.getElementById('qb-' + name);
+        if(block) {
+          const labels = block.querySelectorAll('label');
+          labels.forEach(label => {
+            const input = label.querySelector('input');
+            if(input.value === correctAnswers[name].answer) {
+              label.classList.add('correct-answer');
+            }
+            if(input.checked && input.value !== correctAnswers[name].answer) {
+              label.classList.add('incorrect-answer');
+            }
+          });
+        }
+
+        if(userVal === correctAnswers[name].answer) {
+          totalScore += correctAnswers[name].points;
+        }
+      });
+
+      // 2. Evaluar Selects (Series II, III, IV)
+      const selects = this.querySelectorAll('select');
+      selects.forEach(select => {
+        const name = select.name;
+        if(correctAnswers[name]) {
+          if(select.value === correctAnswers[name].answer) {
+            totalScore += correctAnswers[name].points;
+            select.classList.add('correct-answer', 'font-bold');
+          } else {
+            select.classList.add('incorrect-answer', 'font-bold');
+            const options = select.options;
+            for(let i = 0; i < options.length; i++) {
+              if(options[i].value === correctAnswers[name].answer) {
+                options[i].text = "✓ " + options[i].text;
+              }
+            }
+          }
+        }
+      });
+
+      totalScore = Math.round(totalScore * 10) / 10;
+
+      // Mostrar Panel de Resultados
+      const resultsPanel = document.getElementById('results-panel');
+      const finalScoreEl = document.getElementById('final-score');
+      const feedbackEl = document.getElementById('feedback-message');
+      
+      resultsPanel.classList.remove('hidden');
+      finalScoreEl.textContent = totalScore;
+
+      // Llenar comprobante oficial
+      const studentName = document.getElementById('student-name').value || "Alumno no identificado";
+      const studentId = document.getElementById('student-id').value || "0";
+      
+      document.getElementById('receipt-name').textContent = studentName;
+      document.getElementById('receipt-id').textContent = studentId;
+      document.getElementById('receipt-score').textContent = totalScore;
+      
+      const now = new Date();
+      document.getElementById('receipt-datetime').textContent = now.toLocaleString('es-GT');
+      
+      // Código de validación único para Electricidad
+      const nameSub = studentName.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, 'X');
+      const timeStr = now.getTime().toString().slice(-6);
+      document.getElementById('receipt-code').textContent = `TICI-ELEC-U3-${nameSub}${studentId}-${timeStr}-${totalScore}PTS`;
+      
+      // Retroalimentación según nota enfocada en Electricidad
+      if(totalScore >= 18) {
+        feedbackEl.textContent = "¡Sobresaliente! Demuestras un manejo excepcional de la normativa eléctrica internacional, la ética técnica y los derechos de propiedad intelectual.";
+        feedbackEl.className = "text-lg sm:text-xl font-black text-emerald-600";
+      } else if(totalScore >= 14) {
+        feedbackEl.textContent = "Buen trabajo, has aprobado exitosamente. Te recomiendo continuar repasando la tabla AWG y los conceptos de licenciamiento para perfeccionar tu perfil técnico.";
+        feedbackEl.className = "text-lg sm:text-xl font-black text-amber-600";
+      } else {
+        feedbackEl.textContent = "Se requiere refuerzo de estudio inmediato. Como futuro técnico electricista, es imperativo que repases a profundidad las normas ANSI/IEC y el peligro legal del plagio de esquemas.";
+        feedbackEl.className = "text-lg sm:text-xl font-black text-rose-600";
+      }
+
+      setTimeout(() => {
+        resultsPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 250);
+    });
+  </script>
+</body>
+</html>

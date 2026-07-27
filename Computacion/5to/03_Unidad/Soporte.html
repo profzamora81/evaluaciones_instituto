@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación Parcial No. 1 - Soporte de Computadoras</title>
+    <link rel="icon" type="image/jpeg" href="../../public/Logo.jpeg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+        }
+        .correct-answer { background-color: #dcfce7 !important; border-color: #22c55e !important; color: #166534 !important; }
+        .incorrect-answer { background-color: #fee2e2 !important; border-color: #ef4444 !important; color: #991b1b !important; }
+        .disabled-element { pointer-events: none; opacity: 0.85; }
+        
+        /* Ocultar elementos en impresión para generar un PDF limpio del resultado */
+        @media print {
+            @page { margin: 1.5cm; } /* Reduce los márgenes por defecto de la impresora */
+            .no-print { display: none !important; }
+            body { 
+                background-color: white !important; 
+                background-image: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .glass-panel { box-shadow: none; border: 1px solid #e2e8f0; }
+            
+            /* Nuevos estilos para el comprobante de impresión */
+            .main-evaluation-content { display: none !important; }
+            #print-receipt { display: block !important; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        }
+        .print-only-classroom { display: none; }
+        #print-receipt { display: none; }
+    </style>
+</head>
+<!-- Fondo alegre y tecnológico con gradientes sutiles -->
+<body class="text-slate-800 antialiased py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-indigo-50 via-cyan-50 to-purple-50 min-h-screen">
+
+    <div class="max-w-4xl mx-auto main-evaluation-content">
+        <!-- Encabezado Institucional -->
+        <header class="glass-panel rounded-3xl p-8 mb-8 text-center border-t-8 border-indigo-600 relative overflow-hidden">
+            <!-- Decoración de fondo -->
+            <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full opacity-20 blur-xl"></div>
+            <div class="absolute bottom-0 left-0 -mb-4 -ml-4 w-24 h-24 bg-gradient-to-tr from-purple-400 to-indigo-500 rounded-full opacity-20 blur-xl"></div>
+            
+            <div class="relative z-10">
+                <div class="inline-flex items-center justify-center mb-4 p-1.5 bg-white backdrop-blur-sm rounded-2xl shadow-md border border-slate-200">
+                    <img src="../../public/Logo.jpeg" alt="Logo Instituto Lázaro Chacón González" class="w-24 h-24 sm:w-28 sm:h-28 object-contain rounded-xl">
+                </div>
+                <h1 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Instituto Industrial Central General Lázaro Chacón González</h1>
+                <h2 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-600 mt-2">Evaluación Parcial No. 1</h2>
+                <div class="mt-4 flex flex-wrap justify-center gap-2 sm:gap-4 text-sm font-medium">
+                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full"><strong>Curso:</strong> Soporte de Computadoras</span>
+                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full"><strong>Grado:</strong> 5to. Bachillerato</span>
+                    <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full"><strong>Valor:</strong> 20 Puntos</span>
+                </div>
+                <p class="text-slate-500 mt-3 text-sm"><strong>Docente:</strong> Erick Enrique Zamora Paz</p>
+            </div>
+        </header>
+
+        <!-- Advertencia IA -->
+        <div class="bg-amber-50 border-l-4 border-amber-500 p-4 mb-8 rounded-r-lg shadow-sm no-print">
+            <div class="flex items-start">
+                <div class="flex-shrink-0">
+                    <svg class="h-6 w-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-sm font-bold text-amber-800 uppercase tracking-wide">Observación Importante</h3>
+                    <div class="mt-1 text-sm text-amber-700 font-medium">
+                        <p>Queda estrictamente prohibido el uso de Inteligencia Artificial (IA) para resolver esta evaluación.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form id="evaluation-form">
+            <!-- Datos del Estudiante -->
+            <section class="glass-panel rounded-2xl p-6 mb-8 border-l-4 border-cyan-500 hover:shadow-md transition-shadow">
+                <h3 class="text-lg font-bold text-cyan-900 mb-4 flex items-center">
+                    <svg class="w-6 h-6 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                    Identificación del Estudiante
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="sm:col-span-2">
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">Nombre Completo</label>
+                        <input type="text" id="student-name" required class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all" placeholder="Apellidos, Nombres">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">Clave</label>
+                        <input type="number" id="student-id" required min="1" class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all" placeholder="Ej. 15">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">Fecha</label>
+                        <input type="date" id="student-date" required class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all">
+                    </div>
+                </div>
+            </section>
+
+            <!-- FASE I: TEORÍA -->
+            <div class="mb-10">
+                <div class="flex items-center mb-6">
+                    <div class="h-8 w-2 bg-indigo-600 rounded-full mr-3"></div>
+                    <h2 class="text-2xl font-black text-slate-900">FASE I: Fundamentos Teóricos <span class="text-indigo-600 text-xl">(10 Puntos)</span></h2>
+                </div>
+                
+                <!-- Serie I -->
+                <section class="glass-panel rounded-2xl p-6 mb-6 border-t border-indigo-100">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-lg font-bold text-indigo-900">Serie I: Selección Múltiple</h3>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs font-bold px-3 py-1 rounded-full">5 Puntos</span>
+                    </div>
+                    <p class="text-sm font-medium text-indigo-700 mb-6 bg-indigo-50/50 p-3 rounded-lg border border-indigo-100">
+                        Instrucciones: Lee cuidadosamente cada enunciado y selecciona la única respuesta correcta. 
+                        <strong>(Valor: 5 preguntas a 1 punto cada una).</strong>
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <!-- Q1 -->
+                        <div class="question-block" id="qb-q1">
+                            <p class="font-semibold text-slate-800 mb-3 text-base">1. ¿Cuál es el tipo de red que interconecta equipos dentro de un área geográfica extensa, como diferentes ciudades o países (ej. el Internet)?</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pl-2 sm:pl-4">
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-200 hover:border-indigo-200"><input type="radio" name="q1" value="a" required class="w-4 h-4 text-indigo-600 focus:ring-indigo-500"> <span class="font-medium text-slate-700">a) LAN</span></label>
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-200 hover:border-indigo-200"><input type="radio" name="q1" value="b" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500"> <span class="font-medium text-slate-700">b) PAN</span></label>
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-200 hover:border-indigo-200"><input type="radio" name="q1" value="c" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500"> <span class="font-medium text-slate-700">c) WAN</span></label>
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-200 hover:border-indigo-200"><input type="radio" name="q1" value="d" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500"> <span class="font-medium text-slate-700">d) MAN</span></label>
+                            </div>
+                        </div>
+
+                        <!-- Q2 -->
+                        <div class="question-block" id="qb-q2">
+                            <p class="font-semibold text-slate-800 mb-3 text-base">2. ¿Cuántas capas estructuran al Modelo de referencia OSI y al Modelo TCP/IP, respectivamente?</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pl-2 sm:pl-4">
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-200 hover:border-indigo-200"><input type="radio" name="q2" value="a" required class="w-4 h-4 text-indigo-600 focus:ring-indigo-500"> <span class="font-medium text-slate-700">a) OSI: 7 capas / TCP/IP: 4 capas</span></label>
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-200 hover:border-indigo-200"><input type="radio" name="q2" value="b" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500"> <span class="font-medium text-slate-700">b) OSI: 4 capas / TCP/IP: 7 capas</span></label>
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-200 hover:border-indigo-200"><input type="radio" name="q2" value="c" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500"> <span class="font-medium text-slate-700">c) OSI: 5 capas / TCP/IP: 6 capas</span></label>
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-200 hover:border-indigo-200"><input type="radio" name="q2" value="d" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500"> <span class="font-medium text-slate-700">d) Ambos tienen 7 capas.</span></label>
+                            </div>
+                        </div>
+
+                        <!-- Q3 -->
+                        <div class="question-block" id="qb-q3">
+                            <p class="font-semibold text-slate-800 mb-3 text-base">3. ¿Cuál de los siguientes cables es completamente inmune a las interferencias electromagnéticas (EMI) porque transmite señales de luz?</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pl-2 sm:pl-4">
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-200 hover:border-indigo-200"><input type="radio" name="q3" value="a" required class="w-4 h-4 text-indigo-600 focus:ring-indigo-500"> <span class="font-medium text-slate-700">a) Cable Coaxial</span></label>
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-200 hover:border-indigo-200"><input type="radio" name="q3" value="b" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500"> <span class="font-medium text-slate-700">b) Par trenzado Cat 6</span></label>
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-200 hover:border-indigo-200"><input type="radio" name="q3" value="c" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500"> <span class="font-medium text-slate-700">c) Par trenzado Cat 5e</span></label>
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-200 hover:border-indigo-200"><input type="radio" name="q3" value="d" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500"> <span class="font-medium text-slate-700">d) Fibra Óptica</span></label>
+                            </div>
+                        </div>
+
+                        <!-- Q4 -->
+                        <div class="question-block" id="qb-q4">
+                            <p class="font-semibold text-slate-800 mb-3 text-base">4. ¿Qué conector físico se utiliza tradicionalmente en los extremos de un cable UTP para conectar una computadora a un switch?</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pl-2 sm:pl-4">
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-200 hover:border-indigo-200"><input type="radio" name="q4" value="a" required class="w-4 h-4 text-indigo-600 focus:ring-indigo-500"> <span class="font-medium text-slate-700">a) RJ-11</span></label>
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-200 hover:border-indigo-200"><input type="radio" name="q4" value="b" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500"> <span class="font-medium text-slate-700">b) RJ-45</span></label>
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-200 hover:border-indigo-200"><input type="radio" name="q4" value="c" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500"> <span class="font-medium text-slate-700">c) LC</span></label>
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-200 hover:border-indigo-200"><input type="radio" name="q4" value="d" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500"> <span class="font-medium text-slate-700">d) SC</span></label>
+                            </div>
+                        </div>
+
+                        <!-- Q5 -->
+                        <div class="question-block" id="qb-q5">
+                            <p class="font-semibold text-slate-800 mb-3 text-base">5. Es la herramienta que utiliza el técnico para remover el revestimiento protector externo del cable UTP sin dañar los hilos internos de cobre:</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pl-2 sm:pl-4">
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-200 hover:border-indigo-200"><input type="radio" name="q5" value="a" required class="w-4 h-4 text-indigo-600 focus:ring-indigo-500"> <span class="font-medium text-slate-700">a) Crimpadora</span></label>
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-200 hover:border-indigo-200"><input type="radio" name="q5" value="b" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500"> <span class="font-medium text-slate-700">b) Tester de red</span></label>
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-200 hover:border-indigo-200"><input type="radio" name="q5" value="c" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500"> <span class="font-medium text-slate-700">c) Pelacables / Cortadora</span></label>
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-200 hover:border-indigo-200"><input type="radio" name="q5" value="d" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500"> <span class="font-medium text-slate-700">d) Herramienta de impacto (Punch-down)</span></label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Serie II -->
+                <section class="glass-panel rounded-2xl p-6 shadow-sm mb-6 border-t border-indigo-100">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-lg font-bold text-indigo-900">Serie II: Topologías y Herramientas</h3>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs font-bold px-3 py-1 rounded-full">5 Puntos</span>
+                    </div>
+                    <p class="text-sm font-medium text-indigo-700 mb-6 bg-indigo-50/50 p-3 rounded-lg border border-indigo-100">
+                        Instrucciones: Selecciona del menú desplegable el concepto o herramienta que corresponda a la descripción técnica.
+                        <strong>(Valor: 5 enunciados a 1 punto cada uno).</strong>
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-indigo-300 transition-colors">
+                            <p class="text-sm font-medium text-slate-700 mb-3 sm:mb-0 sm:w-2/3 pr-4">1. Todos los dispositivos están conectados a un único cable central. Si el cable principal falla, toda la red se cae.</p>
+                            <select name="t1" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm font-medium outline-none">
+                                <option value="" disabled selected>Seleccione Topología...</option>
+                                <option value="estrella">Topología en Estrella</option>
+                                <option value="bus">Topología en Bus</option>
+                                <option value="anillo">Topología en Anillo</option>
+                                <option value="malla">Topología en Malla</option>
+                            </select>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-indigo-300 transition-colors">
+                            <p class="text-sm font-medium text-slate-700 mb-3 sm:mb-0 sm:w-2/3 pr-4">2. Cada dispositivo tiene una conexión dedicada con todos los demás. Ofrece tolerancia a fallos, pero es costosa.</p>
+                            <select name="t2" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm font-medium outline-none">
+                                <option value="" disabled selected>Seleccione Topología...</option>
+                                <option value="estrella">Topología en Estrella</option>
+                                <option value="bus">Topología en Bus</option>
+                                <option value="anillo">Topología en Anillo</option>
+                                <option value="malla">Topología en Malla</option>
+                            </select>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-indigo-300 transition-colors">
+                            <p class="text-sm font-medium text-slate-700 mb-3 sm:mb-0 sm:w-2/3 pr-4">3. Los nodos están conectados a un dispositivo central (Switch). Si un cable falla, solo ese nodo pierde conexión.</p>
+                            <select name="t3" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm font-medium outline-none">
+                                <option value="" disabled selected>Seleccione Topología...</option>
+                                <option value="estrella">Topología en Estrella</option>
+                                <option value="bus">Topología en Bus</option>
+                                <option value="anillo">Topología en Anillo</option>
+                                <option value="malla">Topología en Malla</option>
+                            </select>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-indigo-300 transition-colors">
+                            <p class="text-sm font-medium text-slate-700 mb-3 sm:mb-0 sm:w-2/3 pr-4">4. Herramienta diseñada para insertar los hilos de cobre dentro de conectores hembra (jacks) o paneles de parcheo.</p>
+                            <select name="t4" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm font-medium outline-none">
+                                <option value="" disabled selected>Seleccione Herramienta...</option>
+                                <option value="tester">Tester de red LED</option>
+                                <option value="crimpadora">Crimpadora RJ-45</option>
+                                <option value="impacto">Herramienta de impacto (Punch-down)</option>
+                            </select>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-indigo-300 transition-colors">
+                            <p class="text-sm font-medium text-slate-700 mb-3 sm:mb-0 sm:w-2/3 pr-4">5. Herramienta mecánica para fijar firmemente (ponchar) los conectores RJ-45 macho en el cable UTP.</p>
+                            <select name="t5" required class="sm:w-1/3 p-2.5 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm font-medium outline-none">
+                                <option value="" disabled selected>Seleccione Herramienta...</option>
+                                <option value="tester">Tester de red LED</option>
+                                <option value="crimpadora">Crimpadora RJ-45</option>
+                                <option value="impacto">Herramienta de impacto (Punch-down)</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- FASE II: PRÁCTICA -->
+            <div>
+                <div class="flex items-center mb-6">
+                    <div class="h-8 w-2 bg-emerald-500 rounded-full mr-3"></div>
+                    <h2 class="text-2xl font-black text-slate-900">FASE II: Taller Práctico y Diagnóstico <span class="text-emerald-600 text-xl">(10 Puntos)</span></h2>
+                </div>
+                
+                <!-- Serie III: Constructor de Cableado -->
+                <section class="glass-panel rounded-2xl p-6 shadow-sm mb-6 border-t border-emerald-100">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-lg font-bold text-emerald-900">Serie III: Constructor de Cableado</h3>
+                        <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full">5 Puntos</span>
+                    </div>
+                    <p class="text-sm font-medium text-emerald-800 mb-4 bg-emerald-50/50 p-3 rounded-lg border border-emerald-100">
+                        Instrucciones: Como técnico de soporte, debes armar un cable de red utilizando el estándar <strong>T568B</strong>. Selecciona el color correcto para cada uno de los 8 pines solicitados. 
+                        <strong>(Valor de la serie: 5 Puntos proporcionales a los aciertos).</strong>
+                    </p>
+                    
+                    <!-- Simulación de Pines -->
+                    <div class="bg-slate-900 p-4 sm:p-8 rounded-2xl shadow-inner text-white border border-slate-800 overflow-x-auto">
+                        <div class="flex justify-start sm:justify-center items-end space-x-2 sm:space-x-4 h-36 min-w-max relative pb-2" id="cable-builder">
+                            
+                            <!-- Pin 1 -->
+                            <div class="flex flex-col items-center group w-16 sm:w-20">
+                                <div class="w-6 sm:w-8 h-24 bg-slate-700 rounded-t-md border border-slate-600 shadow-md transition-all duration-300 group-hover:h-28" id="wire-color-1"></div>
+                                <span class="text-[10px] sm:text-xs mt-3 font-mono font-bold text-cyan-400 bg-slate-800 px-1 sm:px-2 py-1 rounded w-full text-center">Pin 1</span>
+                                <select name="pin1" required class="mt-2 sm:mt-3 text-[10px] sm:text-xs text-slate-900 font-semibold rounded-lg p-1 w-full outline-none focus:ring-2 focus:ring-cyan-500" onchange="updateWireColor(this, 'wire-color-1')">
+                                    <option value="" disabled selected>Color</option>
+                                    <option value="blanco-naranja" data-bg="bg-orange-200">B-Nar</option>
+                                    <option value="naranja" data-bg="bg-orange-500">Naranja</option>
+                                    <option value="blanco-verde" data-bg="bg-green-200">B-Ver</option>
+                                    <option value="azul" data-bg="bg-blue-600">Azul</option>
+                                    <option value="blanco-azul" data-bg="bg-blue-200">B-Azul</option>
+                                    <option value="verde" data-bg="bg-green-500">Verde</option>
+                                    <option value="blanco-marron" data-bg="bg-amber-200">B-Mar</option>
+                                    <option value="marron" data-bg="bg-amber-800">Marrón</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Pin 2 -->
+                            <div class="flex flex-col items-center group w-16 sm:w-20">
+                                <div class="w-6 sm:w-8 h-24 bg-slate-700 rounded-t-md border border-slate-600 shadow-md transition-all duration-300 group-hover:h-28" id="wire-color-2"></div>
+                                <span class="text-[10px] sm:text-xs mt-3 font-mono font-bold text-cyan-400 bg-slate-800 px-1 sm:px-2 py-1 rounded w-full text-center">Pin 2</span>
+                                <select name="pin2" required class="mt-2 sm:mt-3 text-[10px] sm:text-xs text-slate-900 font-semibold rounded-lg p-1 w-full outline-none focus:ring-2 focus:ring-cyan-500" onchange="updateWireColor(this, 'wire-color-2')">
+                                    <option value="" disabled selected>Color</option>
+                                    <option value="blanco-naranja" data-bg="bg-orange-200">B-Nar</option>
+                                    <option value="naranja" data-bg="bg-orange-500">Naranja</option>
+                                    <option value="blanco-verde" data-bg="bg-green-200">B-Ver</option>
+                                    <option value="azul" data-bg="bg-blue-600">Azul</option>
+                                    <option value="blanco-azul" data-bg="bg-blue-200">B-Azul</option>
+                                    <option value="verde" data-bg="bg-green-500">Verde</option>
+                                    <option value="blanco-marron" data-bg="bg-amber-200">B-Mar</option>
+                                    <option value="marron" data-bg="bg-amber-800">Marrón</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Pin 3 -->
+                            <div class="flex flex-col items-center group w-16 sm:w-20">
+                                <div class="w-6 sm:w-8 h-24 bg-slate-700 rounded-t-md border border-slate-600 shadow-md transition-all duration-300 group-hover:h-28" id="wire-color-3"></div>
+                                <span class="text-[10px] sm:text-xs mt-3 font-mono font-bold text-cyan-400 bg-slate-800 px-1 sm:px-2 py-1 rounded w-full text-center">Pin 3</span>
+                                <select name="pin3" required class="mt-2 sm:mt-3 text-[10px] sm:text-xs text-slate-900 font-semibold rounded-lg p-1 w-full outline-none focus:ring-2 focus:ring-cyan-500" onchange="updateWireColor(this, 'wire-color-3')">
+                                    <option value="" disabled selected>Color</option>
+                                    <option value="blanco-naranja" data-bg="bg-orange-200">B-Nar</option>
+                                    <option value="naranja" data-bg="bg-orange-500">Naranja</option>
+                                    <option value="blanco-verde" data-bg="bg-green-200">B-Ver</option>
+                                    <option value="azul" data-bg="bg-blue-600">Azul</option>
+                                    <option value="blanco-azul" data-bg="bg-blue-200">B-Azul</option>
+                                    <option value="verde" data-bg="bg-green-500">Verde</option>
+                                    <option value="blanco-marron" data-bg="bg-amber-200">B-Mar</option>
+                                    <option value="marron" data-bg="bg-amber-800">Marrón</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Pin 4 -->
+                            <div class="flex flex-col items-center group w-16 sm:w-20">
+                                <div class="w-6 sm:w-8 h-24 bg-slate-700 rounded-t-md border border-slate-600 shadow-md transition-all duration-300 group-hover:h-28" id="wire-color-4"></div>
+                                <span class="text-[10px] sm:text-xs mt-3 font-mono font-bold text-cyan-400 bg-slate-800 px-1 sm:px-2 py-1 rounded w-full text-center">Pin 4</span>
+                                <select name="pin4" required class="mt-2 sm:mt-3 text-[10px] sm:text-xs text-slate-900 font-semibold rounded-lg p-1 w-full outline-none focus:ring-2 focus:ring-cyan-500" onchange="updateWireColor(this, 'wire-color-4')">
+                                    <option value="" disabled selected>Color</option>
+                                    <option value="blanco-naranja" data-bg="bg-orange-200">B-Nar</option>
+                                    <option value="naranja" data-bg="bg-orange-500">Naranja</option>
+                                    <option value="blanco-verde" data-bg="bg-green-200">B-Ver</option>
+                                    <option value="azul" data-bg="bg-blue-600">Azul</option>
+                                    <option value="blanco-azul" data-bg="bg-blue-200">B-Azul</option>
+                                    <option value="verde" data-bg="bg-green-500">Verde</option>
+                                    <option value="blanco-marron" data-bg="bg-amber-200">B-Mar</option>
+                                    <option value="marron" data-bg="bg-amber-800">Marrón</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Pin 5 -->
+                            <div class="flex flex-col items-center group w-16 sm:w-20">
+                                <div class="w-6 sm:w-8 h-24 bg-slate-700 rounded-t-md border border-slate-600 shadow-md transition-all duration-300 group-hover:h-28" id="wire-color-5"></div>
+                                <span class="text-[10px] sm:text-xs mt-3 font-mono font-bold text-cyan-400 bg-slate-800 px-1 sm:px-2 py-1 rounded w-full text-center">Pin 5</span>
+                                <select name="pin5" required class="mt-2 sm:mt-3 text-[10px] sm:text-xs text-slate-900 font-semibold rounded-lg p-1 w-full outline-none focus:ring-2 focus:ring-cyan-500" onchange="updateWireColor(this, 'wire-color-5')">
+                                    <option value="" disabled selected>Color</option>
+                                    <option value="blanco-naranja" data-bg="bg-orange-200">B-Nar</option>
+                                    <option value="naranja" data-bg="bg-orange-500">Naranja</option>
+                                    <option value="blanco-verde" data-bg="bg-green-200">B-Ver</option>
+                                    <option value="azul" data-bg="bg-blue-600">Azul</option>
+                                    <option value="blanco-azul" data-bg="bg-blue-200">B-Azul</option>
+                                    <option value="verde" data-bg="bg-green-500">Verde</option>
+                                    <option value="blanco-marron" data-bg="bg-amber-200">B-Mar</option>
+                                    <option value="marron" data-bg="bg-amber-800">Marrón</option>
+                                </select>
+                            </div>
+
+                            <!-- Pin 6 -->
+                            <div class="flex flex-col items-center group w-16 sm:w-20">
+                                <div class="w-6 sm:w-8 h-24 bg-slate-700 rounded-t-md border border-slate-600 shadow-md transition-all duration-300 group-hover:h-28" id="wire-color-6"></div>
+                                <span class="text-[10px] sm:text-xs mt-3 font-mono font-bold text-cyan-400 bg-slate-800 px-1 sm:px-2 py-1 rounded w-full text-center">Pin 6</span>
+                                <select name="pin6" required class="mt-2 sm:mt-3 text-[10px] sm:text-xs text-slate-900 font-semibold rounded-lg p-1 w-full outline-none focus:ring-2 focus:ring-cyan-500" onchange="updateWireColor(this, 'wire-color-6')">
+                                    <option value="" disabled selected>Color</option>
+                                    <option value="blanco-naranja" data-bg="bg-orange-200">B-Nar</option>
+                                    <option value="naranja" data-bg="bg-orange-500">Naranja</option>
+                                    <option value="blanco-verde" data-bg="bg-green-200">B-Ver</option>
+                                    <option value="azul" data-bg="bg-blue-600">Azul</option>
+                                    <option value="blanco-azul" data-bg="bg-blue-200">B-Azul</option>
+                                    <option value="verde" data-bg="bg-green-500">Verde</option>
+                                    <option value="blanco-marron" data-bg="bg-amber-200">B-Mar</option>
+                                    <option value="marron" data-bg="bg-amber-800">Marrón</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Pin 7 -->
+                            <div class="flex flex-col items-center group w-16 sm:w-20">
+                                <div class="w-6 sm:w-8 h-24 bg-slate-700 rounded-t-md border border-slate-600 shadow-md transition-all duration-300 group-hover:h-28" id="wire-color-7"></div>
+                                <span class="text-[10px] sm:text-xs mt-3 font-mono font-bold text-cyan-400 bg-slate-800 px-1 sm:px-2 py-1 rounded w-full text-center">Pin 7</span>
+                                <select name="pin7" required class="mt-2 sm:mt-3 text-[10px] sm:text-xs text-slate-900 font-semibold rounded-lg p-1 w-full outline-none focus:ring-2 focus:ring-cyan-500" onchange="updateWireColor(this, 'wire-color-7')">
+                                    <option value="" disabled selected>Color</option>
+                                    <option value="blanco-naranja" data-bg="bg-orange-200">B-Nar</option>
+                                    <option value="naranja" data-bg="bg-orange-500">Naranja</option>
+                                    <option value="blanco-verde" data-bg="bg-green-200">B-Ver</option>
+                                    <option value="azul" data-bg="bg-blue-600">Azul</option>
+                                    <option value="blanco-azul" data-bg="bg-blue-200">B-Azul</option>
+                                    <option value="verde" data-bg="bg-green-500">Verde</option>
+                                    <option value="blanco-marron" data-bg="bg-amber-200">B-Mar</option>
+                                    <option value="marron" data-bg="bg-amber-800">Marrón</option>
+                                </select>
+                            </div>
+
+                            <!-- Pin 8 -->
+                            <div class="flex flex-col items-center group w-16 sm:w-20">
+                                <div class="w-6 sm:w-8 h-24 bg-slate-700 rounded-t-md border border-slate-600 shadow-md transition-all duration-300 group-hover:h-28" id="wire-color-8"></div>
+                                <span class="text-[10px] sm:text-xs mt-3 font-mono font-bold text-cyan-400 bg-slate-800 px-1 sm:px-2 py-1 rounded w-full text-center">Pin 8</span>
+                                <select name="pin8" required class="mt-2 sm:mt-3 text-[10px] sm:text-xs text-slate-900 font-semibold rounded-lg p-1 w-full outline-none focus:ring-2 focus:ring-cyan-500" onchange="updateWireColor(this, 'wire-color-8')">
+                                    <option value="" disabled selected>Color</option>
+                                    <option value="blanco-naranja" data-bg="bg-orange-200">B-Nar</option>
+                                    <option value="naranja" data-bg="bg-orange-500">Naranja</option>
+                                    <option value="blanco-verde" data-bg="bg-green-200">B-Ver</option>
+                                    <option value="azul" data-bg="bg-blue-600">Azul</option>
+                                    <option value="blanco-azul" data-bg="bg-blue-200">B-Azul</option>
+                                    <option value="verde" data-bg="bg-green-500">Verde</option>
+                                    <option value="blanco-marron" data-bg="bg-amber-200">B-Mar</option>
+                                    <option value="marron" data-bg="bg-amber-800">Marrón</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Serie IV: Simulador Tester y Análisis -->
+                <section class="glass-panel rounded-2xl p-6 shadow-sm mb-6 border-t border-purple-100">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-lg font-bold text-purple-900">Serie IV: Análisis y Diagnóstico</h3>
+                        <span class="bg-purple-100 text-purple-800 text-xs font-bold px-3 py-1 rounded-full">5 Puntos</span>
+                    </div>
+                    <p class="text-sm font-medium text-purple-800 mb-6 bg-purple-50/50 p-3 rounded-lg border border-purple-100">
+                        Instrucciones: Analiza los siguientes 5 casos y selecciona el diagnóstico o concepto técnico correcto.
+                        <strong>(Valor: 5 casos a 1 punto cada uno).</strong>
+                    </p>
+
+                    <div class="space-y-5">
+                        <!-- Análisis 1: Tipo de cable -->
+                        <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm hover:border-purple-300 transition-colors">
+                            <p class="font-semibold text-slate-800 text-sm mb-3">1. Si conectas el estándar T568B en un extremo, y el estándar T568A en el otro, ¿Qué tipo de cable fabricaste y para qué sirve?</p>
+                            <select name="analisis_1" required class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm font-medium focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none">
+                                <option value="" disabled selected>Seleccione el diagnóstico de diseño...</option>
+                                <option value="directo_router">Cable Directo (Straight-through) - Sirve para conectar PC a Router.</option>
+                                <option value="cruzado_homologo">Cable Cruzado (Crossover) - Sirve para conectar dispositivos homólogos (PC a PC, Switch a Switch).</option>
+                                <option value="consola_switch">Cable de Consola (Rollover) - Sirve para configurar Switches.</option>
+                            </select>
+                        </div>
+
+                        <!-- Análisis 2: Mapeador LED 1 -->
+                        <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm hover:border-purple-300 transition-colors">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-purple-100 p-1.5 rounded mr-2"><svg class="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path></svg></div>
+                                <h4 class="font-bold text-purple-900 text-sm">Caso Tester de Red</h4>
+                            </div>
+                            <div class="font-mono text-xs bg-slate-800 text-green-400 p-3 rounded-lg border border-slate-700 mb-3 shadow-inner">
+                                <p><span class="text-white font-bold">MAESTRO:</span> [1] [2] [3] [4] [5] [6] [7] [8]</p>
+                                <p class="mt-1"><span class="text-white font-bold">REMOTO :</span> [1] [2] <span class="text-rose-500 font-bold bg-rose-900/50 px-1 rounded">[X]</span> [4] [5] <span class="text-rose-500 font-bold bg-rose-900/50 px-1 rounded">[X]</span> [7] [8]</p>
+                            </div>
+                            <p class="font-semibold text-slate-800 text-sm mb-3">¿Qué pines fallan y qué pudo causarlo?</p>
+                            <select name="analisis_2" required class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm font-medium focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none">
+                                <option value="" disabled selected>Seleccione el diagnóstico técnico...</option>
+                                <option value="transposicion_36">Fallo de transposición en pines 3 y 6. El técnico cruzó los colores por error.</option>
+                                <option value="abierto_36">Fallo de continuidad en pines 3 y 6. Hilos no llegaron al fondo del conector o crimpado débil.</option>
+                            </select>
+                        </div>
+
+                        <!-- Análisis 3: Fallo físico general -->
+                        <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm hover:border-purple-300 transition-colors">
+                            <p class="font-semibold text-slate-800 text-sm mb-3">3. El técnico dejó más de 1.5 cm de hilos destrenzados fuera de la chaqueta antes de entrar al RJ-45. ¿Consecuencia principal?</p>
+                            <select name="analisis_3" required class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm font-medium focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none">
+                                <option value="" disabled selected>Seleccione el diagnóstico...</option>
+                                <option value="sin_internet">El cable se quemará instantáneamente al conectarse a un puerto PoE.</option>
+                                <option value="diafonia">Causa interferencia electromagnética y diafonía (crosstalk), degradando la señal.</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Análisis 4: Tester 2 -->
+                        <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm hover:border-purple-300 transition-colors">
+                            <p class="font-semibold text-slate-800 text-sm mb-3">4. Al probar un cable recto, los LEDs encienden en este orden en el remoto: 1, 2, 6, 4, 5, 3, 7, 8. ¿Qué significa?</p>
+                            <select name="analisis_4" required class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm font-medium focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none">
+                                <option value="" disabled selected>Seleccione el diagnóstico...</option>
+                                <option value="cable_perfecto">El cable está en perfectas condiciones para Gigabit Ethernet.</option>
+                                <option value="pares_cruzados">Hay pares cruzados (Split Pair) o el técnico armó un lado A y el otro B por error.</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Análisis 5: Herramienta tester -->
+                        <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm hover:border-purple-300 transition-colors">
+                            <p class="font-semibold text-slate-800 text-sm mb-3">5. ¿Qué función principal cumple la herramienta utilizada para verificar los casos anteriores?</p>
+                            <select name="analisis_5" required class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm font-medium focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none">
+                                <option value="" disabled selected>Seleccione el diagnóstico...</option>
+                                <option value="continuidad">Verificar la continuidad eléctrica y el mapeo de hilos (Tester de red).</option>
+                                <option value="pelar">Remover el aislamiento exterior del cable UTP (Pelacables).</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Advertencia Classroom -->
+            <div class="bg-rose-50 border-l-4 border-rose-500 p-4 mb-8 rounded-r-lg shadow-sm no-print">
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <svg class="h-6 w-6 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    </div>
+                    <div class="ml-3">
+                        <h3 class="text-sm font-bold text-rose-800 uppercase tracking-wide">Instrucción Importante - Entrega</h3>
+                        <div class="mt-1 text-sm text-rose-700 font-medium">
+                            <p>Al finalizar, deberás guardar la página con tus resultados como <strong>documento PDF</strong>. Ese archivo es el que <strong>DEBES SUBIR OBLIGATORIAMENTE</strong> a Google Classroom para validar tu nota.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón de Envío -->
+            <div class="flex flex-col justify-center items-center mt-6 no-print">
+                <button type="submit" class="bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-bold py-4 px-10 rounded-2xl shadow-lg shadow-indigo-500/30 transition-all transform hover:-translate-y-1 w-full sm:w-auto text-lg flex items-center justify-center">
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Terminar y Calificar
+                </button>
+            </div>
+        </form>
+
+        <!-- Resultados (Oculto inicialmente) -->
+        <div id="results-panel" class="hidden glass-panel rounded-3xl p-8 shadow-2xl border-t-8 border-emerald-500 mt-10 transform transition-all duration-500">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-black text-slate-900 mb-4">Resultados Finales</h2>
+                <div class="inline-block bg-gradient-to-br from-slate-100 to-slate-200 p-6 rounded-3xl shadow-inner mb-4 border border-slate-200">
+                    <span id="final-score" class="text-6xl font-black text-indigo-600 drop-shadow-sm">0</span>
+                    <span class="text-2xl font-bold text-slate-400">/ 20</span>
+                </div>
+                <p id="feedback-message" class="text-xl font-bold mt-2"></p>
+            </div>
+            
+            <div class="bg-cyan-50 p-4 rounded-xl border border-cyan-100 mb-8 text-sm text-cyan-800 font-medium flex items-center">
+                <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                La evaluación ha sido calificada automáticamente. Revisa tus aciertos en verde y errores en rojo arriba.
+            </div>
+
+            <!-- Este mensaje SÍ saldrá en el PDF impreso -->
+            <div class="print-only-classroom">
+                *** DOCUMENTO OFICIAL PARA GOOGLE CLASSROOM ***
+            </div>
+
+            <div class="text-center no-print bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                <h3 class="font-black text-rose-600 mb-2 uppercase text-lg tracking-wider">Último Paso</h3>
+                <p class="mb-5 text-slate-600 font-medium">Genera el PDF usando el botón y súbelo a la asignación de <strong>Classroom</strong>.</p>
+                
+                <button onclick="window.print()" class="bg-slate-900 hover:bg-black text-white font-bold py-3 px-8 rounded-xl shadow-lg transition-all w-full sm:w-auto flex items-center justify-center mx-auto">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                    Descargar como PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comprobante para Impresión PDF -->
+    <div id="print-receipt" class="w-full max-w-4xl mx-auto bg-white">
+        <!-- Encabezado verde corporativo -->
+        <div class="bg-emerald-500 py-6 px-6 text-center text-white mb-6">
+            <h1 class="text-xl sm:text-2xl font-black mb-2 uppercase tracking-wider">Instituto Industrial Central Gral. Lázaro Chacón González</h1>
+            <h2 class="text-base sm:text-lg font-bold uppercase tracking-wide">Comprobante Oficial de Evaluación - Soporte</h2>
+        </div>
+
+        <div class="px-8 py-2">
+            <h3 class="text-base font-black text-slate-900 mb-4">DATOS ACADÉMICOS DEL ESTUDIANTE</h3>
+            
+            <div class="space-y-2 text-slate-800 text-base mb-6 border-b border-slate-200 pb-6">
+                <p><span class="font-medium">Nombre Completo:</span> <span id="receipt-name" class="uppercase"></span></p>
+                <p><span class="font-medium">Curso:</span> Soporte de Computadoras</p>
+                <p><span class="font-medium">Grado:</span> Quinto Bachillerato</p>
+                <p><span class="font-medium">Fecha y Hora de Emisión:</span> <span id="receipt-datetime"></span></p>
+            </div>
+
+            <div class="text-center mb-6">
+                <h2 class="text-3xl sm:text-4xl font-black text-emerald-500 tracking-tight">CALIFICACIÓN: <span id="receipt-score">0</span> / 20 PUNTOS</h2>
+            </div>
+
+            <div class="text-center text-slate-600 text-sm space-y-2 mb-8 max-w-2xl mx-auto">
+                <p>Este documento sirve como evidencia inalterable de la realización de la evaluación digital correspondiente al laboratorio práctico de la Unidad.</p>
+                <p>Instrucciones: Guarde este comprobante y súbalo a la tarea en Google Classroom.</p>
+                <p class="font-bold text-slate-700 mt-4 border border-slate-200 p-3 rounded-lg bg-slate-50 shadow-sm text-xs">Observación: Queda estrictamente prohibido el uso de Inteligencia Artificial (IA) para resolver esta evaluación.</p>
+            </div>
+
+            <div class="border-t border-slate-200 pt-4 mt-6">
+                <p class="font-mono font-bold text-slate-800 text-sm">CÓDIGO DE VALIDACIÓN UNIFICADO: <span id="receipt-code"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Actualizar colores visuales del cable interactivo
+        function updateWireColor(selectElement, wireDivId) {
+            const wireDiv = document.getElementById(wireDivId);
+            const selectedOption = selectElement.options[selectElement.selectedIndex];
+            
+            // Remover colores anteriores
+            wireDiv.className = "w-6 sm:w-8 h-24 rounded-t-md border border-slate-600 shadow-md transition-all duration-300 group-hover:h-28";
+            
+            if(selectedOption.value !== "") {
+                const bgClass = selectedOption.getAttribute('data-bg');
+                wireDiv.classList.add(bgClass);
+            } else {
+                wireDiv.classList.add('bg-slate-700');
+            }
+        }
+
+        // Respuestas Correctas y Ponderación 
+        // Total = 20 Pts
+        
+        const correctAnswers = {
+            // Serie I: Selección Múltiple (5 pts)
+            q1: { answer: 'c', points: 1 }, // WAN
+            q2: { answer: 'a', points: 1 }, // 7 y 4
+            q3: { answer: 'd', points: 1 }, // Fibra
+            q4: { answer: 'b', points: 1 }, // RJ-45
+            q5: { answer: 'c', points: 1 }, // Pelacables
+            
+            // Serie II: Topologías (5 pts)
+            t1: { answer: 'bus', points: 1 },
+            t2: { answer: 'malla', points: 1 },
+            t3: { answer: 'estrella', points: 1 },
+            t4: { answer: 'impacto', points: 1 },
+            t5: { answer: 'crimpadora', points: 1 },
+
+            // Serie III: Constructor de Cableado T568B (Bloque proporcional a 5pts)
+            pin1: { answer: 'blanco-naranja' },
+            pin2: { answer: 'naranja' },
+            pin3: { answer: 'blanco-verde' },
+            pin4: { answer: 'azul' },
+            pin5: { answer: 'blanco-azul' },
+            pin6: { answer: 'verde' },
+            pin7: { answer: 'blanco-marron' },
+            pin8: { answer: 'marron' },
+
+            // Serie IV: Análisis y Diagnóstico (5 pts)
+            analisis_1: { answer: 'cruzado_homologo', points: 1 },
+            analisis_2: { answer: 'abierto_36', points: 1 },
+            analisis_3: { answer: 'diafonia', points: 1 },
+            analisis_4: { answer: 'pares_cruzados', points: 1 },
+            analisis_5: { answer: 'continuidad', points: 1 }
+        };
+
+        document.getElementById('evaluation-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let totalScore = 0;
+            const formData = new FormData(this);
+            
+            // Deshabilitar formulario
+            this.classList.add('disabled-element');
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.style.display = 'none';
+
+            // Evaluar Radios (Serie 1)
+            ['q1', 'q2', 'q3', 'q4', 'q5'].forEach(name => {
+                const userVal = formData.get(name);
+                const block = document.getElementById('qb-' + name);
+                const labels = block.querySelectorAll('label');
+                
+                labels.forEach(label => {
+                    const input = label.querySelector('input');
+                    if(input.value === correctAnswers[name].answer) {
+                        label.classList.add('correct-answer');
+                    }
+                    if(input.checked && input.value !== correctAnswers[name].answer) {
+                        label.classList.add('incorrect-answer');
+                    }
+                });
+
+                if(userVal === correctAnswers[name].answer) {
+                    totalScore += correctAnswers[name].points;
+                }
+            });
+
+            // Evaluar Selects (Resto de las series) - Ignorando los bloqueados del Cable Builder
+            let correctPinsCount = 0;
+            const selects = this.querySelectorAll('select:not([disabled])');
+            selects.forEach(select => {
+                const name = select.name;
+                if(correctAnswers[name]) {
+                    if(select.value === correctAnswers[name].answer) {
+                        
+                        if(name.startsWith('pin')) {
+                            correctPinsCount++;
+                        } else {
+                            totalScore += correctAnswers[name].points;
+                        }
+                        
+                        select.classList.add('correct-answer', 'font-bold');
+                        
+                        if(name.startsWith('pin')) {
+                            const pinNum = name.replace('pin', '');
+                            const wireDiv = document.getElementById('wire-color-' + pinNum);
+                            if(wireDiv) {
+                                wireDiv.classList.add('border-2', 'border-emerald-500', 'ring-2', 'ring-emerald-200');
+                                wireDiv.classList.add('relative');
+                                wireDiv.innerHTML = '<div class="absolute inset-0 flex items-center justify-center opacity-90"><svg class="w-5 h-5 text-emerald-800 bg-emerald-100 rounded-full p-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg></div>';
+                            }
+                        }
+                    } else {
+                        select.classList.add('incorrect-answer', 'font-bold');
+                        // Mostrar la respuesta correcta en el select para feedback
+                        const options = select.options;
+                        for(let i=0; i<options.length; i++) {
+                            if(options[i].value === correctAnswers[name].answer) {
+                                options[i].text = "✓ " + options[i].text;
+                            }
+                        }
+                        
+                        if(name.startsWith('pin')) {
+                            const pinNum = name.replace('pin', '');
+                            const wireDiv = document.getElementById('wire-color-' + pinNum);
+                            if(wireDiv) {
+                                wireDiv.classList.add('border-2', 'border-rose-500', 'ring-2', 'ring-rose-200');
+                                wireDiv.classList.add('relative');
+                                wireDiv.innerHTML = '<div class="absolute inset-0 flex items-center justify-center opacity-90"><svg class="w-5 h-5 text-rose-800 bg-rose-100 rounded-full p-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path></svg></div>';
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Añadir puntaje proporcional de los pines (5 pts máximo por 8 aciertos)
+            totalScore += (correctPinsCount / 8) * 5;
+
+            // Mostrar Resultados
+            const resultsPanel = document.getElementById('results-panel');
+            const finalScoreEl = document.getElementById('final-score');
+            const feedbackEl = document.getElementById('feedback-message');
+            
+            // Redondear total por si el proporcional da decimales
+            totalScore = Math.round(totalScore);
+            
+            resultsPanel.classList.remove('hidden');
+            finalScoreEl.textContent = totalScore;
+
+            // Preparar el comprobante de impresión PDF
+            const studentName = document.getElementById('student-name').value || "Estudiante no identificado";
+            const studentId = document.getElementById('student-id').value || "0";
+            
+            document.getElementById('receipt-name').textContent = studentName;
+            document.getElementById('receipt-score').textContent = totalScore;
+            
+            const now = new Date();
+            document.getElementById('receipt-datetime').textContent = now.toLocaleString('es-GT');
+            
+            // Generar un código de validación que se vea profesional para el docente
+            const nameSub = studentName.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, 'X');
+            const timeStr = now.getTime().toString().slice(-5);
+            document.getElementById('receipt-code').textContent = `SOP-U1-${nameSub}${studentId}-${timeStr}-${totalScore}`;
+            
+            // Logica de puntaje sobre 20 (90% = 18pts, 70% = 14pts)
+            if(totalScore >= 18) {
+                feedbackEl.textContent = "¡Excelente trabajo! Dominas el soporte de redes.";
+                feedbackEl.className = "text-xl font-black text-emerald-600";
+                resultsPanel.classList.replace('border-emerald-500', 'border-emerald-500');
+            } else if(totalScore >= 14) {
+                feedbackEl.textContent = "Buen trabajo, pero hay conceptos técnicos que debes repasar.";
+                feedbackEl.className = "text-xl font-black text-amber-500";
+                resultsPanel.classList.replace('border-emerald-500', 'border-amber-500');
+            } else {
+                feedbackEl.textContent = "Necesitas estudiar las guías nuevamente y practicar más.";
+                feedbackEl.className = "text-xl font-black text-rose-600";
+                resultsPanel.classList.replace('border-emerald-500', 'border-rose-500');
+            }
+
+            // Scroll a los resultados con animación suave
+            setTimeout(() => {
+                resultsPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
+        });
+    </script>
+</body>
+</html>

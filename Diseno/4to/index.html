@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluaciones 4to Diseño - III Unidad</title>
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-color: #f3f4f6;
+            --text-color: #1f2937;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-color);
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .menu-container { 
+            background-color: #ffffff; 
+            padding: 40px; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+            width: 100%; 
+            max-width: 500px; 
+            text-align: center;
+        }
+
+        h2 { 
+            margin-top: 0;
+            color: #111827;
+            font-size: 24px;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #dbeafe;
+            color: #1e40af;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #4b5563;
+            margin-bottom: 25px;
+        }
+
+        .courses-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .course-btn { 
+            display: block;
+            width: 100%; 
+            padding: 15px; 
+            background-color: white; 
+            color: var(--primary-color); 
+            border: 2px solid var(--primary-color); 
+            border-radius: 8px; 
+            text-decoration: none;
+            font-size: 16px; 
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .course-btn:hover { 
+            background-color: var(--primary-color); 
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 25px;
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="menu-container">
+    <span class="badge">4to Bachillerato</span>
+    <h2>Diseño</h2>
+    <p>Selecciona la materia que deseas evaluar correspondente a la III Unidad:</p>
+    
+    <div class="courses-list">
+        <!-- Estos enlaces apuntarán a los exámenes de 4to Diseño -->
+        <a href="03_Unidad/materia1.html" class="course-btn">Materia 1 (Diseño)</a>
+        <a href="03_Unidad/materia2.html" class="course-btn">Materia 2 (Diseño)</a>
+    </div>
+
+    <!-- El enlace retrocede dos carpetas para volver al inicio -->
+    <a href="../../index.html" class="back-link">← Volver a inicio de sesión</a>
+</div>
+
+</body>
+</html>
