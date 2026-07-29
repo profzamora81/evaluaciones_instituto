@@ -33,6 +33,24 @@
     .correct-answer { background-color: #dcfce7 !important; border-color: #22c55e !important; color: #166534 !important; }
     .incorrect-answer { background-color: #fee2e2 !important; border-color: #ef4444 !important; color: #991b1b !important; }
     .disabled-element { pointer-events: none; opacity: 0.88; }
+
+    /* Corrección para el conflicto entre Tailwind CSS Preflight y MathJax SVG */
+    mjx-container {
+      display: inline-block !important;
+      margin: 0 !important;
+      vertical-align: middle;
+    }
+    mjx-container svg {
+      display: inline !important;
+    }
+    mjx-container[display="true"] {
+      display: block !important;
+      margin: 1em 0 !important;
+    }
+    mjx-container[display="true"] svg {
+      display: block !important;
+      margin: 0 auto !important;
+    }
     
     @media print {
       @page { size: portrait; margin: 1cm; }
